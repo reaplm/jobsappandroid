@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/nav_header"
+	android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+	android:clickable="true"
+	android:background="@color/primary_text_disabled_material_light"
+	android:gravity="bottom"
+	android:padding="@dimen/abc_action_bar_content_inset_material"
+	>
+
+	<ImageView 
+	android:id="@+id/nav_header_image"
+	android:layout_width="64dp"
+    android:layout_height="64dp"
+	android:src="@mipmap/ic_launcher"
+	/>
+	<TextView
+	android:id="@+id/nav_header_text"
+	android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+	android:text="Jobs App Header"/>
+</LinearLayout>

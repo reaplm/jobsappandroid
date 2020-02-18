@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
+using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -15,15 +16,23 @@ namespace JobsAppAndroid
     public class MainActivity : AppCompatActivity
     {
         private TabLayout tabLayout;
+        private DrawerLayout drawerLayout;
         private ViewPager viewPager;
+        private NavigationView navigationView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.drawer_main);
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+
+            //Drawer
+            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_open);
+            drawerLayout.AddDrawerListener(drawerToggle);
+            drawerToggle.SyncState();
 
             tabLayout = (TabLayout)FindViewById(Resource.Id.tablayout);
             viewPager = (ViewPager)FindViewById(Resource.Id.viewpager);
@@ -31,11 +40,13 @@ namespace JobsAppAndroid
             SetupViewPager(viewPager);
             tabLayout.SetupWithViewPager(viewPager);
 
+            
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.menu_main, menu);
+            //navigationView.Inflate(Resource.Menu.drawer_menu);
             return true;
         }
 
@@ -50,17 +61,28 @@ namespace JobsAppAndroid
             return base.OnOptionsItemSelected(item);
         }
         private AdapterFragment homeFragment;
+        private AdapterFragment alertsFragment;
         private AdapterFragment jobsFragment;
 
         public void SetupViewPager(ViewPager viewPager)
         {
             ViewPagerAdapter adapter = new ViewPagerAdapter(SupportFragmentManager);
             homeFragment = new AdapterFragment();
+            alertsFragment = new AdapterFragment();
             jobsFragment = new AdapterFragment();
 
-        adapter.AddFragment(homeFragment, "Home");
-            adapter.AddFragment(jobsFragment, "Alerts");
+            adapter.AddFragment(homeFragment, "Home");
+            adapter.AddFragment(alertsFragment, "Alerts");
+            adapter.AddFragment(jobsFragment, "Jobs");
             viewPager.Adapter = adapter;
+        }
+        private void SetupDrawerContent(NavigationView navigationView)
+        {
+            navigationView.NavigationItemSelected += (sender, e) =>
+            {
+                e.MenuItem.SetChecked(true);
+                drawerLayout.CloseDrawers();
+            };
         }
 
     }
