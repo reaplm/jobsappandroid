@@ -18,7 +18,6 @@ namespace JobsAppAndroid
         private TabLayout tabLayout;
         private DrawerLayout drawerLayout;
         private ViewPager viewPager;
-        private NavigationView navigationView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
