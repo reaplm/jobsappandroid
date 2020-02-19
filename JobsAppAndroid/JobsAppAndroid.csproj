@@ -165,6 +165,42 @@
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\outline_info.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\outline_work.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\outline_home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\outline_notification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\outline_work.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\outline_home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\outline_notification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\outline_work.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\outline_home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\outline_notification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\outline_work.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\outline_home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\outline_notification.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.

@@ -40,7 +40,7 @@ namespace JobsAppAndroid
             SetupViewPager(viewPager);
             tabLayout.SetupWithViewPager(viewPager);
 
-            
+            SetupTabIcons();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -84,7 +84,12 @@ namespace JobsAppAndroid
                 drawerLayout.CloseDrawers();
             };
         }
-
+        private void SetupTabIcons()
+        {
+            tabLayout.GetTabAt(0).SetIcon(Resource.Mipmap.outline_home);
+            tabLayout.GetTabAt(1).SetIcon(Resource.Mipmap.outline_notification);
+            tabLayout.GetTabAt(2).SetIcon(Resource.Mipmap.outline_work);
+        }
     }
 }
 

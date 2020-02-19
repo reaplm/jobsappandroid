@@ -3184,10 +3184,19 @@ namespace JobsAppAndroid
 			public const int outline_help = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int outline_info = 2130903045;
+			public const int outline_home = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int outline_settings = 2130903046;
+			public const int outline_info = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int outline_notification = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int outline_settings = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int outline_work = 2130903049;
 			
 			static Mipmap()
 			{
