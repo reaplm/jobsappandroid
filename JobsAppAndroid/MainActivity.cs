@@ -26,19 +26,20 @@ namespace JobsAppAndroid
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+            
 
             //Drawer
             drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_open);
+            var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,Resource.String.drawer_open, Resource.String.drawer_close);
             drawerLayout.AddDrawerListener(drawerToggle);
-            drawerToggle.SyncState();
+            //drawerToggle.SyncState();
 
             tabLayout = (TabLayout)FindViewById(Resource.Id.tablayout);
             viewPager = (ViewPager)FindViewById(Resource.Id.viewpager);
 
             SetupViewPager(viewPager);
             tabLayout.SetupWithViewPager(viewPager);
-
+            tabLayout.SetTabTextColors(Resource.Color.white, Resource.Color.white);
             SetupTabIcons();
         }
 
@@ -61,14 +62,14 @@ namespace JobsAppAndroid
         }
         private AdapterFragment homeFragment;
         private AdapterFragment alertsFragment;
-        private AdapterFragment jobsFragment;
+        private JobsFragment jobsFragment;
 
         public void SetupViewPager(ViewPager viewPager)
         {
             ViewPagerAdapter adapter = new ViewPagerAdapter(SupportFragmentManager);
             homeFragment = new AdapterFragment();
             alertsFragment = new AdapterFragment();
-            jobsFragment = new AdapterFragment();
+            jobsFragment = new JobsFragment();
 
             adapter.AddFragment(homeFragment, "Home");
             adapter.AddFragment(alertsFragment, "Alerts");
