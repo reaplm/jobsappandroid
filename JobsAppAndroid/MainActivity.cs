@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.App;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -39,7 +40,7 @@ namespace JobsAppAndroid
 
             SetupViewPager(viewPager);
             tabLayout.SetupWithViewPager(viewPager);
-            tabLayout.SetTabTextColors(Resource.Color.white, Resource.Color.white);
+            tabLayout.SetTabTextColors(Color.ParseColor("#ffffff"), Color.ParseColor("#ffffff"));
             SetupTabIcons();
         }
 
