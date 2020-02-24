@@ -33,15 +33,19 @@ namespace JobsAppAndroid
             drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,Resource.String.drawer_open, Resource.String.drawer_close);
             drawerLayout.AddDrawerListener(drawerToggle);
-            //drawerToggle.SyncState();
+            drawerToggle.SyncState();
 
             tabLayout = (TabLayout)FindViewById(Resource.Id.tablayout);
             viewPager = (ViewPager)FindViewById(Resource.Id.viewpager);
 
+            
             SetupViewPager(viewPager);
             tabLayout.SetupWithViewPager(viewPager);
+
             tabLayout.SetTabTextColors(Color.ParseColor("#ffffff"), Color.ParseColor("#ffffff"));
             SetupTabIcons();
+
+            var container = FindViewById<FrameLayout>(Resource.Id.container);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

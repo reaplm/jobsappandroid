@@ -2489,8 +2489,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f080039
 			public const int collapseActionView = 2131230777;
 			
-			// aapt resource value: 0x7f080090
-			public const int container = 2131230864;
+			// aapt resource value: 0x7f08008d
+			public const int container = 2131230861;
 			
 			// aapt resource value: 0x7f080066
 			public const int contentPanel = 2131230822;
@@ -2606,8 +2606,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f08009e
 			public const int jobs_recycler_view = 2131230878;
 			
-			// aapt resource value: 0x7f08008f
-			public const int largeLabel = 2131230863;
+			// aapt resource value: 0x7f080090
+			public const int largeLabel = 2131230864;
 			
 			// aapt resource value: 0x7f080049
 			public const int left = 2131230793;
@@ -2801,8 +2801,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f080025
 			public const int showTitle = 2131230757;
 			
-			// aapt resource value: 0x7f08008e
-			public const int smallLabel = 2131230862;
+			// aapt resource value: 0x7f08008f
+			public const int smallLabel = 2131230863;
 			
 			// aapt resource value: 0x7f080095
 			public const int snackbar_action = 2131230869;
@@ -2924,8 +2924,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f08008d
-			public const int viewpager = 2131230861;
+			// aapt resource value: 0x7f08008e
+			public const int viewpager = 2131230862;
 			
 			// aapt resource value: 0x7f0800c0
 			public const int visible = 2131230912;
