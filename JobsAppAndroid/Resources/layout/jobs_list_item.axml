@@ -98,19 +98,16 @@
 					android:textSize="15sp"
 					android:id="@+id/list_item_closing_date"/>
 			</LinearLayout>
-			<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="fav button"
-				android:textColor="#FFFFFF"
-				android:textStyle="bold"
-				android:textSize="16sp"
-				android:layout_marginTop="8dp"
-				android:layout_centerInParent="true"
+			<CheckBox 
+				android:id="@+id/list_item_fav_button"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:layout_gravity="right"
+				android:button="@drawable/star" 
 				android:layout_column="2"
-				android:layout_row="0"
-				android:id="@+id/list_item_fav_button"/>
-		</GridLayout>
+				android:layout_row="0"/>
+
+					</GridLayout>
 		
 </LinearLayout>
 
