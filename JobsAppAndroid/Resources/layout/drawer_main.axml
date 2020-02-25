@@ -17,6 +17,7 @@
 		android:layout_width="300dp"
 		android:layout_gravity="start"
 		android:fitsSystemWindows="true"
+		android:background="@color/drawerBackground"
 		app:headerLayout="@layout/nav_header_main"
 		app:menu="@menu/menu_drawer" />
 

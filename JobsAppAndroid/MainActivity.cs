@@ -42,7 +42,9 @@ namespace JobsAppAndroid
             SetupViewPager(viewPager);
             tabLayout.SetupWithViewPager(viewPager);
 
-            tabLayout.SetTabTextColors(Color.ParseColor("#ffffff"), Color.ParseColor("#ffffff"));
+            /*tabLayout.SetTabTextColors(Color.ParseColor("#ffffff"), Color.ParseColor("#e254ff"));
+            tabLayout.SetBackgroundColor(Color.ParseColor("#e254ff"));
+            tabLayout.SetSelectedTabIndicatorColor(Color.)*/
             SetupTabIcons();
 
             var container = FindViewById<FrameLayout>(Resource.Id.container);
@@ -91,9 +93,9 @@ namespace JobsAppAndroid
         }
         private void SetupTabIcons()
         {
-            tabLayout.GetTabAt(0).SetIcon(Resource.Mipmap.outline_home);
-            tabLayout.GetTabAt(1).SetIcon(Resource.Mipmap.outline_notification);
-            tabLayout.GetTabAt(2).SetIcon(Resource.Mipmap.outline_work);
+            tabLayout.GetTabAt(0).SetIcon(Resource.Mipmap.home_icon);
+            tabLayout.GetTabAt(1).SetIcon(Resource.Mipmap.notification_icon);
+            tabLayout.GetTabAt(2).SetIcon(Resource.Mipmap.suitcase_icon);
         }
     }
 }

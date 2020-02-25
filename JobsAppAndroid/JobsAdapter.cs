@@ -52,8 +52,8 @@ namespace JobsAppAndroid
             holder.Title.Text = jobs[position].Title;
             holder.Company.Text = jobs[position].Company;
             holder.Location.Text = jobs[position].Location;
-            holder.CreatedDate.Text = jobs[position].CreateTime.ToLongDateString();
-            holder.ClosingDate.Text = jobs[position].Closing.ToShortDateString();
+            holder.CreatedDate.Text = jobs[position].CreateTime.ToShortDateString();
+            holder.ClosingDate.Text = "Closing date: " + jobs[position].Closing.ToShortDateString();
             holder.CircularButton.Text = jobs[position].Title.Substring(0, 1).ToUpper();
 
             ShapeDrawable circle = new ShapeDrawable(new OvalShape());

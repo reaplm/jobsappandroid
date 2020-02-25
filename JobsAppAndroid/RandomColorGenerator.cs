@@ -22,9 +22,9 @@ namespace JobsAppAndroid
         {
             colors = new List<string>
             {
-                "#f48fb1", "#9fa8da", "#b388ff", "#90caf9", "#84ffff",
-                "#ce93d8", "#ff80ab", "#8c9eff", "#81d4fa", "#a7ffeb",
-                "#b39ddb", "#ea80fc", "#82b1ff", "#80deea", "#80d8ff"
+                "#ce93d8", "#90caf9", "#b64fc8", "#4d82cb", "#ff80ab","#9d46ff",
+                "#b39ddb", "#81d4fa", "#805acb", "#49a7cc", "#ea80fc","#bc477b",
+                "#9fa8da", "#80cbc4", "#5870cb", "#75ccb9", "#e254ff","#ff4081"
             };
 
             r = new Random();
@@ -37,12 +37,12 @@ namespace JobsAppAndroid
         }
         public Color GetColor()
         {
-            return Color.ParseColor(colors[r.Next(15)]);
+            return Color.ParseColor(colors[r.Next(18)]);
 
         }
         public string GetColorString()
         {
-            return (colors[r.Next(15)]);
+            return (colors[r.Next(18)]);
 
         }
     }

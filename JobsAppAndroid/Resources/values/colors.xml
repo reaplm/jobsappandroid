@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2c3e50</color>
-    <color name="colorPrimaryDark">#1B3147</color>
-    <color name="colorAccent">#3498db</color>
-  <color name="whiteText">#ffffff</color>
+    <color name="colorPrimary">#aa00ff</color>
+    <color name="colorPrimaryDark">#7200ca</color>
+    <color name="colorAccent">#e254ff</color>
+  
+  <!--- TabLayout -->
+
+  <color name="tabBackground">@color/colorPrimary</color>
+  <color name="tabIndicatorColor">@color/colorAccent</color>
+  <color name="tabSelectedTextColor">@color/colorAccent</color>
+  <color name="tabTextColor">@color/white</color>
+
+
+  <!-- Navigation Drawer -->
+  <color name="drawerBackground">#fafafa</color>
+  
+  <!-- Other Colors -->
   <color name="white">#ffffff</color>
-  <color name="tabIndicatorColor">#a23578</color>
+  <color name="grey">#666666</color>
+  
 </resources>
+

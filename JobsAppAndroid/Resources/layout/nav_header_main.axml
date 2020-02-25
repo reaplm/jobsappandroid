@@ -13,7 +13,7 @@
 	android:id="@+id/nav_header_image"
 	android:layout_width="match_parent"
     android:layout_height="180dp"
-	android:src="@mipmap/avatar_icon"
+	 android:src="@mipmap/user_icon"
 
 	/>
 	<TextView
@@ -22,7 +22,7 @@
     android:layout_height="wrap_content"
 	android:textAlignment="center"
 	android:layout_below="@id/nav_header_image"
-	android:textColor="@color/whiteText"
+	android:textColor="@color/white"
 	android:text="Display Name"
 	/>
 </RelativeLayout>

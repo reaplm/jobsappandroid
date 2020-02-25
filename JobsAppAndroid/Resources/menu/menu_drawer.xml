@@ -4,17 +4,18 @@
   
   <item android:id="@+id/action_favourites"
         android:title="Favourites"
-        android:icon="@mipmap/outline_heart"/>
+        android:icon="@mipmap/favourites_icon"/>
 
   <item android:id="@+id/action_settings"
         android:title="Settings"
-        android:icon="@mipmap/outline_settings"/>
+        android:icon="@mipmap/settings_icon"/>
   <item android:id="@+id/action_help"
         android:title="Help"
-        android:icon="@mipmap/outline_help"/>
+        android:icon="@mipmap/help_icon"
+        android:background="@color/colorPrimary"/>
   <item android:id="@+id/action_about"
         android:title="About" 
-        android:icon="@mipmap/outline_info"/>
+        android:icon="@mipmap/info_icon"/>
   
 </menu>
 

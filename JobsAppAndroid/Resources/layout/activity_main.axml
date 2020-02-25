@@ -25,7 +25,10 @@
 				android:background="?android:attr/colorPrimary"
 				app:tabGravity="fill"
 				app:tabMode="fixed"
-				app:tabIndicatorColor="@color/tabIndicatorColor">
+				app:tabIndicatorColor="@color/tabIndicatorColor"
+				app:tabBackground="@color/tabBackground"
+				app:tabTextColor="@color/tabTextColor"
+				app:tabSelectedTextColor="@color/tabSelectedTextColor">
 			</android.support.design.widget.TabLayout>
 
 		</android.support.design.widget.AppBarLayout>
