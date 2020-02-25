@@ -5,6 +5,12 @@ using Android.Widget;
 using Android.Support.V7.Widget;
 using JobsAppAndroid.Models;
 using System.Collections.Generic;
+using Android.Support.V4.Graphics.Drawable;
+using Android.Support.V4.Content;
+using Android.Graphics.Drawables;
+using Android.Support.V4.Content.Res;
+using Android.Graphics.Drawables.Shapes;
+using Android.Graphics;
 
 namespace JobsAppAndroid
 {
@@ -12,17 +18,21 @@ namespace JobsAppAndroid
     {
         public event EventHandler<JobsAdapterClickEventArgs> ItemClick;
         public event EventHandler<JobsAdapterClickEventArgs> ItemLongClick;
-        private List<Job> jobs; 
+        private List<Job> jobs;
+        private RandomColorGenerator randomColorGenerator;
 
         public JobsAdapter(List<Job> data)
         {
             jobs = data;
+
+            //Color Generator
+            randomColorGenerator = new RandomColorGenerator();
+
         }
 
         // Create new views (invoked by the layout manager)
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-
             //Setup your layout here
             var id = Resource.Layout.jobs_list_item;
             View itemView = LayoutInflater.From(parent.Context).
@@ -44,6 +54,11 @@ namespace JobsAppAndroid
             holder.Location.Text = jobs[position].Location;
             holder.CreatedDate.Text = jobs[position].CreateTime.ToLongDateString();
             holder.ClosingDate.Text = jobs[position].Closing.ToShortDateString();
+            holder.CircularButton.Text = jobs[position].Title.Substring(0, 1).ToUpper();
+
+            ShapeDrawable circle = new ShapeDrawable(new OvalShape());
+            circle.Paint.Color = randomColorGenerator.GetColor();
+            holder.CircularButton.Background = circle;
         }
 
         public override int ItemCount => jobs.Count;
@@ -60,6 +75,7 @@ namespace JobsAppAndroid
         public TextView Location { get; set; }
         public TextView CreatedDate { get; set; }
         public TextView ClosingDate { get; set; }
+        public Button CircularButton { set; get; }
 
         public JobsAdapterViewHolder(View itemView, Action<JobsAdapterClickEventArgs> clickListener,
                             Action<JobsAdapterClickEventArgs> longClickListener) : base(itemView)
@@ -69,6 +85,7 @@ namespace JobsAppAndroid
             Location = itemView.FindViewById<TextView>(Resource.Id.list_item_location);
             CreatedDate = itemView.FindViewById<TextView>(Resource.Id.list_item_created_date);
             ClosingDate = itemView.FindViewById<TextView>(Resource.Id.list_item_closing_date);
+            CircularButton = itemView.FindViewById<Button>(Resource.Id.list_item_circle_btn);
 
             itemView.Click += (sender, e) => clickListener(new JobsAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new JobsAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
