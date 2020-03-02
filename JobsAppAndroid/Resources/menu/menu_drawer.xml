@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--For all properties see: http://developer.android.com/guide/topics/resources/menu-resource.html-->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+       android:id="@+id/drawer_menu">
   
   <item android:id="@+id/action_favourites"
         android:title="Favourites"
@@ -16,6 +17,9 @@
   <item android:id="@+id/action_about"
         android:title="About" 
         android:icon="@mipmap/info_icon"/>
+  <item android:id="@+id/action_login"
+        android:title="Login" 
+        />
   
 </menu>
 

@@ -23,6 +23,6 @@
 	android:textAlignment="center"
 	android:layout_below="@id/nav_header_image"
 	android:textColor="@color/white"
-	android:text="Display Name"
+	android:text=" "
 	/>
 </RelativeLayout>
