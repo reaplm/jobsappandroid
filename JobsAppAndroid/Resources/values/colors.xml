@@ -18,6 +18,7 @@
   <!-- Other Colors -->
   <color name="white">#ffffff</color>
   <color name="grey">#666666</color>
+  <color name="lightGrey">#cccccc</color>
   
 </resources>
 
