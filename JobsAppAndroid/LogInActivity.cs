@@ -27,55 +27,62 @@ namespace JobsAppAndroid
 
             SetContentView(Resource.Layout.activity_login);
 
-            //-----------Initiaize Firebase Authentication Service--------------
-            app = FirebaseApp.GetInstance(GetString(Resource.String.app_name));
-            firebaseAuth = FirebaseAuth.GetInstance(app);
-
-            //check for null auth service
-
             email = FindViewById<EditText>(Resource.Id.email);
             password = FindViewById<EditText>(Resource.Id.password);
             loginButton = FindViewById<Button>(Resource.Id.login_button);
             rememberMeCheck = FindViewById<CheckBox>(Resource.Id.login_rememberme);
 
-            //------Authenticate User------------------
-            loginButton.Click += async (sender, e) =>
-            {
+            loginButton.Click += LoginButton_Click;
+
+        }
+        /// <summary>
+        /// Login Button Click Event
+        /// Authenticates user using firebase authentication service
+        /// </summary>
+        /// <param name="sender">Login Button</param>
+        /// <param name="e">Event</param>
+        protected async void LoginButton_Click(object sender, EventArgs e)
+        {
                 Intent result = new Intent();
 
                 try
                 {
-                    //---- Attempt Login -----
+
+                    //Initiaize Firebase Authentication Service
+                    app = FirebaseApp.GetInstance(GetString(Resource.String.app_name));
+                    firebaseAuth = FirebaseAuth.GetInstance(app);
+
+                    // Attempt Login 
                     await firebaseAuth.SignInWithEmailAndPasswordAsync(email.Text, password.Text);
 
-                    if (firebaseAuth.CurrentUser != null)
+                    if (firebaseAuth.CurrentUser != null) 
                     {
+                        result.PutExtra("isLoggedIn", true);
                         result.PutExtra("message", "Login Successful!");
                         SetResult(Result.Ok, result);
                     }
-                    else
+                    else //failed login
                     {
+                        result.PutExtra("isLoggedIn", false);
                         result.PutExtra("message", "Login Failed");
-                        SetResult(Result.Canceled, result);
+                        SetResult(Result.Ok, result);
                     }
 
                 }
-                catch (FirebaseException ex)
+                catch (Exception ex)
                 {
-                    FirebaseAuthException firebaseEx = ex as FirebaseAuthException;
-                    //string exceptionMessage = firebaseEx..Reason.ToString();
+                    //FirebaseAuthException firebaseEx = ex as FirebaseAuthException;
 
-
+                    result.PutExtra("isLoggedIn", false);
                     result.PutExtra("message", ex.Message);
-                    SetResult(Result.Canceled, result);
+                    SetResult(Result.Ok, result);
                 }
                 finally
                 {
-                    //---close the activity---
+                //Close Activity 
                     Finish();
                 }
-            };
+        } 
 
-        }
     }
 }

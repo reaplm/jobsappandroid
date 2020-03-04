@@ -33,7 +33,7 @@ namespace JobsAppAndroid
         static Result RESULT_OK = Result.Ok;
         static Result RESULT_CANCELED = Result.Canceled;
 
-        //------ TabLayout Fragments ---------
+        //TabLayout Fragments
         private AdapterFragment homeFragment;
         private AdapterFragment alertsFragment;
         private JobsFragment jobsFragment;
@@ -46,25 +46,26 @@ namespace JobsAppAndroid
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
             
-            //----- Setup Navigation Drawer ---------
+            //Setup Navigation Drawer 
             drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,Resource.String.drawer_open, Resource.String.drawer_close);
             drawerLayout.AddDrawerListener(drawerToggle);
             drawerToggle.SyncState();
 
+            //Setup Navigation View
             SetNavigationViewListener();
 
-            //----- Setup TabLayout ----------------------------------
+            // Setup TabLayout 
             tabLayout = (TabLayout)FindViewById(Resource.Id.tablayout);
             viewPager = (ViewPager)FindViewById(Resource.Id.viewpager);
 
             SetupViewPager(viewPager);
             tabLayout.SetupWithViewPager(viewPager);
 
-            //------ Setup TabLayout ---------------------------------
+            //Setup TabLayout 
             SetupTabIcons();
 
-            //------ [START Initialize Firebase]----------------------
+            //[START Initialize Firebase]
 
             var options = new Firebase.FirebaseOptions.Builder()
             .SetApplicationId(GetString(Resource.String.google_application_id))
@@ -76,24 +77,10 @@ namespace JobsAppAndroid
             app = FirebaseApp.InitializeApp(this, options, GetString(Resource.String.app_name));
             firebaseAuth = FirebaseAuth.GetInstance(app);
 
-            //------ [END Initialize Firebase]--------------------------
+            //[END Initialize Firebase]
 
-            //------ Initialize UI --------------------------------------
-            NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
-            IMenu menu = navigationView.Menu;
-            IMenuItem menuItem = menu.FindItem(Resource.Id.action_login);
-
-            if (firebaseAuth.CurrentUser != null)
-            {
-                menuItem.SetTitle("Log Out");
-                drawerLayout.FindViewById<TextView>(Resource.Id.nav_header_text).Text = firebaseAuth.CurrentUser.DisplayName;
-            }
-            else
-            {
-                menuItem.SetTitle("Log In");
-            }
-            navigationView.SetNavigationItemSelectedListener(this);
-
+            //Initialize UI 
+            UpdateUI();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -114,15 +101,18 @@ namespace JobsAppAndroid
         }
         private void SetNavigationViewListener()
         {
-            NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
+            NavigationView navigationView = drawerLayout.FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
         }
-
-        
-
+        /// <summary>
+        /// Setup TabLayout ViewPager
+        /// </summary>
+        /// <param name="viewPager"></param>
         public void SetupViewPager(ViewPager viewPager)
         {
             ViewPagerAdapter adapter = new ViewPagerAdapter(SupportFragmentManager);
+
+            //Create fragments for each tab
             homeFragment = new AdapterFragment();
             alertsFragment = new AdapterFragment();
             jobsFragment = new JobsFragment();
@@ -132,26 +122,20 @@ namespace JobsAppAndroid
             adapter.AddFragment(jobsFragment, "Jobs");
             viewPager.Adapter = adapter;
         }
-        private void SetupDrawerContent(NavigationView navigationView)
-        {
-            navigationView.NavigationItemSelected += (sender, e) =>
-            {
-                e.MenuItem.SetChecked(true);
-                drawerLayout.CloseDrawers();
-            };
-        }
+        /// <summary>
+        /// Add tab icons to TabLayout
+        /// </summary>
         private void SetupTabIcons()
         {
             tabLayout.GetTabAt(0).SetIcon(Resource.Mipmap.home_icon);
             tabLayout.GetTabAt(1).SetIcon(Resource.Mipmap.notification_icon);
             tabLayout.GetTabAt(2).SetIcon(Resource.Mipmap.suitcase_icon);
         }
-
-        public void OnConnectionFailed(ConnectionResult result)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// DrawerLayout Navigation Menu
+        /// </summary>
+        /// <param name="menuItem"></param>
+        /// <returns></returns>
         public bool OnNavigationItemSelected(IMenuItem menuItem)
         {
             switch (menuItem.ItemId)
@@ -159,22 +143,24 @@ namespace JobsAppAndroid
                 case Resource.Id.action_login:
                     if (firebaseAuth.CurrentUser == null) { SignIn(); }
                     else SignOut();
-
-
                     break;
             }
             drawerLayout.CloseDrawer(GravityCompat.Start, true);
             return true;
         }
-
+        /// <summary>
+        /// Sign out
+        /// </summary>
         private void SignOut()
         {
             firebaseAuth.SignOut();
-            UpdateUi();
+            Toast.MakeText(this, "Sign Out Successful!", ToastLength.Long).Show();
+            UpdateUI();
         }
 
         /// <summary>
-        /// SignIn
+        /// Sign In
+        /// Starts LoginActivity
         /// </summary>
         void SignIn()
         {
@@ -182,48 +168,63 @@ namespace JobsAppAndroid
 
             StartActivityForResult(intent, 1);
         }
+        /// <summary>
+        /// On return from activity
+        /// 1: LoginActivity
+        /// </summary>
+        /// <param name="requestCode">Code to identify activity</param>
+        /// <param name="resultCode">Success/Fail code</param>
+        /// <param name="data">Returned Data</param>
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-
+            
+            //LoginActivity
             if (requestCode == 1)
             {
                 if (resultCode == RESULT_OK)
                 {
-                    UpdateUi();
-                    Toast.MakeText(this, data.GetStringExtra("message"), ToastLength.Long).Show();
+                    bool isLoggedIn = data.GetBooleanExtra("isLoggedIn", false);
+
+                    if (isLoggedIn)
+                    {
+                        UpdateUI();
+                        Toast.MakeText(this, data.GetStringExtra("message"), ToastLength.Long).Show();
+                    }
+                    else
+                    {
+                        //UpdateUI();
+                        Toast.MakeText(this, data.GetStringExtra("message"), ToastLength.Long).Show();
+                    }
                 }
                 else if (resultCode == RESULT_CANCELED)
                 {
-                    //Show Dialog
-                    Toast.MakeText(this, data.GetStringExtra("message"), ToastLength.Long).Show();
+                    ;
                 }
             }
         }
         /// <summary>
         /// Update user interface on login or logout
         /// </summary>
-        private void UpdateUi()
+        private void UpdateUI()
         {
-            NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
+            NavigationView navigationView = drawerLayout.FindViewById<NavigationView>(Resource.Id.nav_view);
+
             IMenu menu = navigationView.Menu;
             IMenuItem menuItem = menu.FindItem(Resource.Id.action_login);
+
+            View navHeader = navigationView.GetHeaderView(0);
 
             if (firebaseAuth.CurrentUser != null)
             {
                 menuItem.SetTitle("Log Out");
-                navigationView.FindViewById<TextView>(Resource.Id.nav_header_text).Text = firebaseAuth.CurrentUser.DisplayName;
-
-                Toast.MakeText(this, "You have successfully logged in!", ToastLength.Long).Show();
+                navHeader.FindViewById<TextView>(Resource.Id.nav_header_text).Text = firebaseAuth.CurrentUser.DisplayName;
             }
             else
             {
                 menuItem.SetTitle("Log In");
-                navigationView.FindViewById<TextView>(Resource.Id.nav_header_text).Text = firebaseAuth.CurrentUser.DisplayName;
-
-                Toast.MakeText(this, "You have successfully logged out!", ToastLength.Long).Show();
+                navHeader.FindViewById<TextView>(Resource.Id.nav_header_text).Text = "";
             }
-            navigationView.SetNavigationItemSelectedListener(this);
         }
     }
 }
