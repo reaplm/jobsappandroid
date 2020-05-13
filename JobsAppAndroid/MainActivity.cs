@@ -17,6 +17,7 @@ using Android.Gms.Common;
 using Android.Content;
 using Firebase.Auth;
 using Firebase;
+using Firebase.Firestore;
 
 namespace JobsAppAndroid
 {
