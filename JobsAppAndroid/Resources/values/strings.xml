@@ -6,12 +6,5 @@
   <string name="appbar_scrolling_view_behavior" 
           translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 
-  <!-- Google Services -->
-  <string name="google_project_number">390523151566</string>
-  <string name="google_application_id">1:390523151566:android:c332056e2f0df95c</string>
-  <string name="google_firebase_url">https://jobsapp-c8100.firebaseio.com</string>
-  <string name="google_project_id">jobsapp-c8100</string>
-  <string name="google_api_key">AIzaSyDfzdlTvtuFMzlA0sq3W5kZyP3_iA37gkY</string>
-  <string name="google_secret_key">300cgm3zTt6M75xFhxm1oHdbX0Cdomq4AQi8y7FZ</string>
   
 </resources>
