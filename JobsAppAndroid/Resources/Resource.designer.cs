@@ -2522,11 +2522,11 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b003f
 			public const int SYM = 2131427391;
 			
-			// aapt resource value: 0x7f0b00ba
-			public const int action0 = 2131427514;
+			// aapt resource value: 0x7f0b00bb
+			public const int action0 = 2131427515;
 			
-			// aapt resource value: 0x7f0b00d1
-			public const int action_about = 2131427537;
+			// aapt resource value: 0x7f0b00d2
+			public const int action_about = 2131427538;
 			
 			// aapt resource value: 0x7f0b0083
 			public const int action_bar = 2131427459;
@@ -2549,26 +2549,26 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0061
 			public const int action_bar_title = 2131427425;
 			
-			// aapt resource value: 0x7f0b00b7
-			public const int action_container = 2131427511;
+			// aapt resource value: 0x7f0b00b8
+			public const int action_container = 2131427512;
 			
 			// aapt resource value: 0x7f0b0084
 			public const int action_context_bar = 2131427460;
 			
-			// aapt resource value: 0x7f0b00be
-			public const int action_divider = 2131427518;
+			// aapt resource value: 0x7f0b00bf
+			public const int action_divider = 2131427519;
 			
-			// aapt resource value: 0x7f0b00ce
-			public const int action_favourites = 2131427534;
+			// aapt resource value: 0x7f0b00cf
+			public const int action_favourites = 2131427535;
 			
-			// aapt resource value: 0x7f0b00d0
-			public const int action_help = 2131427536;
+			// aapt resource value: 0x7f0b00d1
+			public const int action_help = 2131427537;
 			
-			// aapt resource value: 0x7f0b00b8
-			public const int action_image = 2131427512;
+			// aapt resource value: 0x7f0b00b9
+			public const int action_image = 2131427513;
 			
-			// aapt resource value: 0x7f0b00d2
-			public const int action_login = 2131427538;
+			// aapt resource value: 0x7f0b00d3
+			public const int action_login = 2131427539;
 			
 			// aapt resource value: 0x7f0b0003
 			public const int action_menu_divider = 2131427331;
@@ -2585,14 +2585,14 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0063
 			public const int action_mode_close_button = 2131427427;
 			
-			// aapt resource value: 0x7f0b00cf
-			public const int action_settings = 2131427535;
+			// aapt resource value: 0x7f0b00d0
+			public const int action_settings = 2131427536;
 			
-			// aapt resource value: 0x7f0b00b9
-			public const int action_text = 2131427513;
+			// aapt resource value: 0x7f0b00ba
+			public const int action_text = 2131427514;
 			
-			// aapt resource value: 0x7f0b00c7
-			public const int actions = 2131427527;
+			// aapt resource value: 0x7f0b00c8
+			public const int actions = 2131427528;
 			
 			// aapt resource value: 0x7f0b0064
 			public const int activity_chooser_view_content = 2131427428;
@@ -2633,8 +2633,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b006a
 			public const int buttonPanel = 2131427434;
 			
-			// aapt resource value: 0x7f0b00bb
-			public const int cancel_action = 2131427515;
+			// aapt resource value: 0x7f0b00bc
+			public const int cancel_action = 2131427516;
 			
 			// aapt resource value: 0x7f0b004c
 			public const int center = 2131427404;
@@ -2648,8 +2648,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b007a
 			public const int checkbox = 2131427450;
 			
-			// aapt resource value: 0x7f0b00c3
-			public const int chronometer = 2131427523;
+			// aapt resource value: 0x7f0b00c4
+			public const int chronometer = 2131427524;
 			
 			// aapt resource value: 0x7f0b0055
 			public const int clip_horizontal = 2131427413;
@@ -2705,8 +2705,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b00a7
 			public const int drawer_layout = 2131427495;
 			
-			// aapt resource value: 0x7f0b00cd
-			public const int drawer_menu = 2131427533;
+			// aapt resource value: 0x7f0b00ce
+			public const int drawer_menu = 2131427534;
 			
 			// aapt resource value: 0x7f0b0085
 			public const int edit_query = 2131427461;
@@ -2717,8 +2717,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0038
 			public const int end = 2131427384;
 			
-			// aapt resource value: 0x7f0b00c9
-			public const int end_padder = 2131427529;
+			// aapt resource value: 0x7f0b00ca
+			public const int end_padder = 2131427530;
 			
 			// aapt resource value: 0x7f0b0047
 			public const int enterAlways = 2131427399;
@@ -2762,8 +2762,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0069
 			public const int icon = 2131427433;
 			
-			// aapt resource value: 0x7f0b00c8
-			public const int icon_group = 2131427528;
+			// aapt resource value: 0x7f0b00c9
+			public const int icon_group = 2131427529;
 			
 			// aapt resource value: 0x7f0b0020
 			public const int icon_only = 2131427360;
@@ -2774,11 +2774,11 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0066
 			public const int image = 2131427430;
 			
-			// aapt resource value: 0x7f0b00b0
-			public const int imageView2 = 2131427504;
+			// aapt resource value: 0x7f0b00b1
+			public const int imageView2 = 2131427505;
 			
-			// aapt resource value: 0x7f0b00c4
-			public const int info = 2131427524;
+			// aapt resource value: 0x7f0b00c5
+			public const int info = 2131427525;
 			
 			// aapt resource value: 0x7f0b0060
 			public const int italic = 2131427424;
@@ -2804,8 +2804,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0018
 			public const int line3 = 2131427352;
 			
-			// aapt resource value: 0x7f0b00ad
-			public const int linearLayout2 = 2131427501;
+			// aapt resource value: 0x7f0b00ae
+			public const int linearLayout2 = 2131427502;
 			
 			// aapt resource value: 0x7f0b0026
 			public const int listMode = 2131427366;
@@ -2813,26 +2813,26 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0068
 			public const int list_item = 2131427432;
 			
-			// aapt resource value: 0x7f0b00ac
-			public const int list_item_circle_btn = 2131427500;
-			
-			// aapt resource value: 0x7f0b00b2
-			public const int list_item_closing_date = 2131427506;
-			
-			// aapt resource value: 0x7f0b00af
-			public const int list_item_company = 2131427503;
-			
-			// aapt resource value: 0x7f0b00aa
-			public const int list_item_created_date = 2131427498;
+			// aapt resource value: 0x7f0b00ad
+			public const int list_item_circle_btn = 2131427501;
 			
 			// aapt resource value: 0x7f0b00b3
-			public const int list_item_fav_button = 2131427507;
+			public const int list_item_closing_date = 2131427507;
 			
-			// aapt resource value: 0x7f0b00b1
-			public const int list_item_location = 2131427505;
+			// aapt resource value: 0x7f0b00b0
+			public const int list_item_company = 2131427504;
 			
-			// aapt resource value: 0x7f0b00ae
-			public const int list_item_title = 2131427502;
+			// aapt resource value: 0x7f0b00ab
+			public const int list_item_created_date = 2131427499;
+			
+			// aapt resource value: 0x7f0b00b4
+			public const int list_item_fav_button = 2131427508;
+			
+			// aapt resource value: 0x7f0b00b2
+			public const int list_item_location = 2131427506;
+			
+			// aapt resource value: 0x7f0b00af
+			public const int list_item_title = 2131427503;
 			
 			// aapt resource value: 0x7f0b0094
 			public const int login_button = 2131427476;
@@ -2840,14 +2840,14 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0095
 			public const int login_rememberme = 2131427477;
 			
-			// aapt resource value: 0x7f0b00cc
-			public const int masked = 2131427532;
+			// aapt resource value: 0x7f0b00cd
+			public const int masked = 2131427533;
 			
-			// aapt resource value: 0x7f0b00bd
-			public const int media_actions = 2131427517;
+			// aapt resource value: 0x7f0b00be
+			public const int media_actions = 2131427518;
 			
-			// aapt resource value: 0x7f0b00ca
-			public const int message = 2131427530;
+			// aapt resource value: 0x7f0b00cb
+			public const int message = 2131427531;
 			
 			// aapt resource value: 0x7f0b0039
 			public const int middle = 2131427385;
@@ -2858,14 +2858,14 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0030
 			public const int multiply = 2131427376;
 			
-			// aapt resource value: 0x7f0b00b4
-			public const int nav_header = 2131427508;
-			
 			// aapt resource value: 0x7f0b00b5
-			public const int nav_header_image = 2131427509;
+			public const int nav_header = 2131427509;
 			
 			// aapt resource value: 0x7f0b00b6
-			public const int nav_header_text = 2131427510;
+			public const int nav_header_image = 2131427510;
+			
+			// aapt resource value: 0x7f0b00b7
+			public const int nav_header_text = 2131427511;
 			
 			// aapt resource value: 0x7f0b00a8
 			public const int nav_view = 2131427496;
@@ -2882,14 +2882,14 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0027
 			public const int normal = 2131427367;
 			
-			// aapt resource value: 0x7f0b00c6
-			public const int notification_background = 2131427526;
+			// aapt resource value: 0x7f0b00c7
+			public const int notification_background = 2131427527;
+			
+			// aapt resource value: 0x7f0b00c1
+			public const int notification_main_column = 2131427521;
 			
 			// aapt resource value: 0x7f0b00c0
-			public const int notification_main_column = 2131427520;
-			
-			// aapt resource value: 0x7f0b00bf
-			public const int notification_main_column_container = 2131427519;
+			public const int notification_main_column_container = 2131427520;
 			
 			// aapt resource value: 0x7f0b0053
 			public const int parallax = 2131427411;
@@ -2918,11 +2918,14 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0051
 			public const int right = 2131427409;
 			
-			// aapt resource value: 0x7f0b00c5
-			public const int right_icon = 2131427525;
+			// aapt resource value: 0x7f0b00c6
+			public const int right_icon = 2131427526;
 			
-			// aapt resource value: 0x7f0b00c1
-			public const int right_side = 2131427521;
+			// aapt resource value: 0x7f0b00c2
+			public const int right_side = 2131427522;
+			
+			// aapt resource value: 0x7f0b00aa
+			public const int rv_progress_bar = 2131427498;
 			
 			// aapt resource value: 0x7f0b000c
 			public const int save_image_matrix = 2131427340;
@@ -3008,8 +3011,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b004b
 			public const int snap = 2131427403;
 			
-			// aapt resource value: 0x7f0b00ab
-			public const int space2 = 2131427499;
+			// aapt resource value: 0x7f0b00ac
+			public const int space2 = 2131427500;
 			
 			// aapt resource value: 0x7f0b006b
 			public const int spacer = 2131427435;
@@ -3032,8 +3035,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0052
 			public const int start = 2131427410;
 			
-			// aapt resource value: 0x7f0b00bc
-			public const int status_bar_latest_event_content = 2131427516;
+			// aapt resource value: 0x7f0b00bd
+			public const int status_bar_latest_event_content = 2131427517;
 			
 			// aapt resource value: 0x7f0b007d
 			public const int submenuarrow = 2131427453;
@@ -3071,8 +3074,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0015
 			public const int textinput_error = 2131427349;
 			
-			// aapt resource value: 0x7f0b00c2
-			public const int time = 2131427522;
+			// aapt resource value: 0x7f0b00c3
+			public const int time = 2131427523;
 			
 			// aapt resource value: 0x7f0b001c
 			public const int title = 2131427356;
@@ -3125,8 +3128,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0099
 			public const int viewpager = 2131427481;
 			
-			// aapt resource value: 0x7f0b00cb
-			public const int visible = 2131427531;
+			// aapt resource value: 0x7f0b00cc
+			public const int visible = 2131427532;
 			
 			// aapt resource value: 0x7f0b0022
 			public const int wide = 2131427362;
@@ -3672,9 +3675,6 @@ namespace JobsAppAndroid
 			
 			// aapt resource value: 0x7f070043
 			public const int google_project_number = 2131165251;
-			
-			// aapt resource value: 0x7f070047
-			public const int google_secret_key = 2131165255;
 			
 			// aapt resource value: 0x7f070006
 			public const int google_storage_bucket = 2131165190;

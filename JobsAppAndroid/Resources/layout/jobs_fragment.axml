@@ -14,4 +14,12 @@
 		android:layout_height="wrap_content"
 		
 />
+<ProgressBar
+		style="?android:attr/progressBarStyleLarge"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:id="@+id/rv_progress_bar" 
+		android:layout_gravity="center" />  
+	<!--android:indeterminateDuration="1500"-->
+
 </LinearLayout>

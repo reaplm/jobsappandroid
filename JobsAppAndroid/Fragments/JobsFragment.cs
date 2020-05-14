@@ -30,13 +30,15 @@ namespace JobsAppAndroid.Fragments
         private FirebaseApp app;
         private FirebaseFirestore db;
 
+        private ProgressBar spinner;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
+            
             app = FirebaseApp.GetInstance(GetString(Resource.String.app_name));
-
             db = FirebaseFirestore.GetInstance(app);
         }
 
@@ -45,15 +47,14 @@ namespace JobsAppAndroid.Fragments
             // Use this to return your custom view for this Fragment
             View view = inflater.Inflate(Resource.Layout.jobs_fragment, container, false);
 
+            spinner = (ProgressBar)view.FindViewById(Resource.Id.rv_progress_bar);
+            spinner.Visibility = ViewStates.Visible;
+
             jobs = new List<Job>();
-
             FetchCollection();
-
             jobsAdapter = new JobsAdapter(jobs);
 
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.jobs_recycler_view);
-            
-
             recyclerView.SetAdapter(jobsAdapter);
 
             DividerItemDecoration myDivider = new DividerItemDecoration(Context, DividerItemDecoration.Vertical);
@@ -68,6 +69,7 @@ namespace JobsAppAndroid.Fragments
         /// </summary>
         private void FetchCollection()
         {
+
             try
             {
                 CollectionReference collection = db.Collection("jobs");
@@ -88,13 +90,17 @@ namespace JobsAppAndroid.Fragments
         {
             try
             {
+
                 var documents = (QuerySnapshot)result;
 
                 foreach (DocumentSnapshot document in documents.Documents)
                 {
-                    Java.Util.Date dt = document.GetDate("Closing");
-                    DateTime closingDt = dt != null ? new DateTime(1970, 1, 1).AddMilliseconds(dt.Time).ToLocalTime() : new DateTime();
-                    DateTime postedDt = dt != null ? new DateTime(1970, 1, 1).AddMilliseconds(dt.Time).ToLocalTime() : new DateTime();
+                    Java.Util.Date dtClosing = document.GetDate("Closing");
+                    Java.Util.Date dtPosted = document.GetDate("Posted");
+                    DateTime closingDt = dtClosing != null ? new DateTime(1970, 1, 1)
+                        .AddMilliseconds(dtClosing.Time).ToLocalTime() : new DateTime();
+                    DateTime postedDt = dtPosted != null ? new DateTime(1970, 1, 1)
+                        .AddMilliseconds(dtPosted.Time).ToLocalTime() : new DateTime();
 
                     jobs.Add(new Job
                     {
@@ -107,11 +113,13 @@ namespace JobsAppAndroid.Fragments
                         Source = document.GetString("Source")
                     });
                 }
+                spinner.Visibility = ViewStates.Gone;
 
                 jobsAdapter.NotifyDataSetChanged(); //for updating adapter
             }
             catch(Java.Lang.Exception e)
             {
+
                 Console.WriteLine("Jobs fragment failure: " + e.StackTrace);
             }
         }
