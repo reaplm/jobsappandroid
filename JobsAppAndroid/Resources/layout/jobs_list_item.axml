@@ -17,11 +17,11 @@
                 android:text="CreateTime"
                 android:textSize="15dp"
 		         android:layout_marginRight="20dp"
-                android:id="@+id/list_item_created_date"/>
+                android:id="@+id/list_item_posted_date"/>
 	<Space
 					android:layout_width="match_parent"
 					android:layout_height="20dp"
-					android:id="@+id/space2" />
+					/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,8 +54,7 @@
 				android:layout_column="1"
 				android:layout_row="0"
 				android:layout_rowWeight="1"
-				android:layout_marginLeft="20dp"
-				android:id="@+id/linearLayout2">
+				android:layout_marginLeft="20dp">
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -74,14 +73,12 @@
 					android:layout_height="wrap_content"
 					android:gravity="left"
 					android:layout_weight="1"
-					android:id="@+id/linearLayout2"
 					>
 					<ImageView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:src="@drawable/outline_location"
 						android:maxWidth="5sp"
-						android:id="@+id/imageView2" 
 					android:tint="@color/grey"/>
 					<TextView
 						android:layout_width="wrap_content"
@@ -95,7 +92,7 @@
 				<Space
 					android:layout_width="match_parent"
 					android:layout_height="20dp"
-					android:id="@+id/space2" />
+					 />
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"

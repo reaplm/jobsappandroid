@@ -52,7 +52,7 @@ namespace JobsAppAndroid
             holder.Title.Text = jobs[position].Title;
             holder.Company.Text = jobs[position].Company;
             holder.Location.Text = jobs[position].Location;
-            holder.CreatedDate.Text = jobs[position].CreateTime.ToShortDateString();
+            holder.PostedDate.Text = jobs[position].Posted.ToShortDateString();
             holder.ClosingDate.Text = "Closing date: " + jobs[position].Closing.ToShortDateString();
             holder.CircularButton.Text = jobs[position].Title.Substring(0, 1).ToUpper();
 
@@ -73,7 +73,7 @@ namespace JobsAppAndroid
         public TextView Title { get; set; }
         public TextView Company { get; set; }
         public TextView Location { get; set; }
-        public TextView CreatedDate { get; set; }
+        public TextView PostedDate { get; set; }
         public TextView ClosingDate { get; set; }
         public Button CircularButton { set; get; }
 
@@ -83,7 +83,7 @@ namespace JobsAppAndroid
             Title = itemView.FindViewById<TextView>(Resource.Id.list_item_title);
             Company = itemView.FindViewById<TextView>(Resource.Id.list_item_company);
             Location = itemView.FindViewById<TextView>(Resource.Id.list_item_location);
-            CreatedDate = itemView.FindViewById<TextView>(Resource.Id.list_item_created_date);
+            PostedDate = itemView.FindViewById<TextView>(Resource.Id.list_item_posted_date);
             ClosingDate = itemView.FindViewById<TextView>(Resource.Id.list_item_closing_date);
             CircularButton = itemView.FindViewById<Button>(Resource.Id.list_item_circle_btn);
 

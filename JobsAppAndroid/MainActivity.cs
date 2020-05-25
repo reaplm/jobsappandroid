@@ -41,47 +41,54 @@ namespace JobsAppAndroid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.drawer_main);
+            try
+            {
+                base.OnCreate(savedInstanceState);
+                SetContentView(Resource.Layout.drawer_main);
 
-            Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
-            
-            //Setup Navigation Drawer 
-            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,Resource.String.drawer_open, Resource.String.drawer_close);
-            drawerLayout.AddDrawerListener(drawerToggle);
-            drawerToggle.SyncState();
+                Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+                SetSupportActionBar(toolbar);
 
-            //Setup Navigation View
-            SetNavigationViewListener();
+                //Setup Navigation Drawer 
+                drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+                var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_close);
+                drawerLayout.AddDrawerListener(drawerToggle);
+                drawerToggle.SyncState();
 
-            // Setup TabLayout 
-            tabLayout = (TabLayout)FindViewById(Resource.Id.tablayout);
-            viewPager = (ViewPager)FindViewById(Resource.Id.viewpager);
+                //Setup Navigation View
+                SetNavigationViewListener();
 
-            SetupViewPager(viewPager);
-            tabLayout.SetupWithViewPager(viewPager);
+                // Setup TabLayout 
+                tabLayout = (TabLayout)FindViewById(Resource.Id.tablayout);
+                viewPager = (ViewPager)FindViewById(Resource.Id.viewpager);
 
-            //Setup TabLayout 
-            SetupTabIcons();
+                SetupViewPager(viewPager);
+                tabLayout.SetupWithViewPager(viewPager);
 
-            //[START Initialize Firebase]
+                //Setup TabLayout 
+                SetupTabIcons();
 
-            var options = new Firebase.FirebaseOptions.Builder()
-            .SetApplicationId(GetString(Resource.String.google_application_id))
-            .SetApiKey(GetString(Resource.String.google_api_key))
-            .SetDatabaseUrl(GetString(Resource.String.google_firebase_url))
-            .SetProjectId(GetString(Resource.String.google_project_id))
-            .Build();
+                //[START Initialize Firebase]
 
-            app = FirebaseApp.InitializeApp(this, options, GetString(Resource.String.app_name));
-            firebaseAuth = FirebaseAuth.GetInstance(app);
+                var options = new Firebase.FirebaseOptions.Builder()
+                .SetApplicationId(GetString(Resource.String.google_application_id))
+                .SetApiKey(GetString(Resource.String.google_api_key))
+                .SetDatabaseUrl(GetString(Resource.String.google_firebase_url))
+                .SetProjectId(GetString(Resource.String.google_project_id))
+                .Build();
 
-            //[END Initialize Firebase]
+                app = FirebaseApp.InitializeApp(this, options, GetString(Resource.String.app_name));
+                firebaseAuth = FirebaseAuth.GetInstance(app);
 
-            //Initialize UI 
-            UpdateUI();
+                //[END Initialize Firebase]
+
+                //Initialize UI 
+                UpdateUI();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Error Msg: " + ex);
+            }
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
