@@ -9,6 +9,7 @@ using Android.Gms.Tasks;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.Content;
+using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
@@ -32,6 +33,8 @@ namespace JobsAppAndroid.Fragments
         private FirebaseFirestore db;
 
         private ProgressBar spinner;
+        private SwipeRefreshLayout swipeRefreshLayout;
+        private bool reload = false;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -48,9 +51,19 @@ namespace JobsAppAndroid.Fragments
             // Use this to return your custom view for this Fragment
             View view = inflater.Inflate(Resource.Layout.jobs_fragment, container, false);
 
-            spinner = (ProgressBar)view.FindViewById(Resource.Id.rv_progress_bar);
-            spinner.Visibility = ViewStates.Visible;
+            swipeRefreshLayout = (SwipeRefreshLayout)view.FindViewById(Resource.Id.refreshView);
+            swipeRefreshLayout.Refresh += delegate (object sender, System.EventArgs e)
+            {
+                reload = true;
+                FetchCollection();
+            };
 
+            swipeRefreshLayout.Post(() => {
+                swipeRefreshLayout.Refreshing = true;
+                recyclerView.Clickable = false;
+            });
+
+            reload = true;
             jobs = new List<Job>();
             FetchCollection();
             jobsAdapter = new JobsAdapter(jobs);
@@ -124,7 +137,7 @@ namespace JobsAppAndroid.Fragments
                     var job = ToObject(dictionary);
                     jobs.Add(job);
                 }
-                spinner.Visibility = ViewStates.Gone;
+                //spinner.Visibility = ViewStates.Gone;
 
                 jobsAdapter.NotifyDataSetChanged(); //for updating adapter
             }
@@ -194,7 +207,11 @@ namespace JobsAppAndroid.Fragments
 
             return newObject;
         }
-
+        /// <summary>
+        /// Snapshot listener that is trigger by DB changes (added, modified, deleted)
+        /// </summary>
+        /// <param name="value">New Snapshot</param>
+        /// <param name="error">Firebase exception object</param>
         public void OnEvent(Java.Lang.Object value, FirebaseFirestoreException error)
         {
             if (error != null)
@@ -233,10 +250,15 @@ namespace JobsAppAndroid.Fragments
                         break;
                     }
             }
-            if (count == 0)
+            swipeRefreshLayout.Post(() => {
+                swipeRefreshLayout.Refreshing = false;
+                recyclerView.Clickable = true;
+            });
+
+            if (reload)
             {
-                spinner.Visibility = ViewStates.Gone;
                 jobsAdapter.NotifyDataSetChanged(); //for updating adapter
+                reload = false;
             }
             else
             {

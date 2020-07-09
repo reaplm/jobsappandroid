@@ -2879,8 +2879,8 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b0000
 			public const int item_touch_helper_previous_elevation = 2131427328;
 			
-			// aapt resource value: 0x7f0b00ba
-			public const int jobs_recycler_view = 2131427514;
+			// aapt resource value: 0x7f0b00bb
+			public const int jobs_recycler_view = 2131427515;
 			
 			// aapt resource value: 0x7f0b00ac
 			public const int largeLabel = 2131427500;
@@ -3005,6 +3005,9 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f0b007c
 			public const int radio = 2131427452;
 			
+			// aapt resource value: 0x7f0b00ba
+			public const int refreshView = 2131427514;
+			
 			// aapt resource value: 0x7f0b0051
 			public const int right = 2131427409;
 			
@@ -3013,9 +3016,6 @@ namespace JobsAppAndroid
 			
 			// aapt resource value: 0x7f0b00d0
 			public const int right_side = 2131427536;
-			
-			// aapt resource value: 0x7f0b00bb
-			public const int rv_progress_bar = 2131427515;
 			
 			// aapt resource value: 0x7f0b000c
 			public const int save_image_matrix = 2131427340;
