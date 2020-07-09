@@ -3580,107 +3580,107 @@ namespace JobsAppAndroid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f070018
-			public const int abc_action_bar_home_description = 2131165208;
-			
 			// aapt resource value: 0x7f070019
-			public const int abc_action_bar_up_description = 2131165209;
+			public const int abc_action_bar_home_description = 2131165209;
 			
 			// aapt resource value: 0x7f07001a
-			public const int abc_action_menu_overflow_description = 2131165210;
+			public const int abc_action_bar_up_description = 2131165210;
 			
 			// aapt resource value: 0x7f07001b
-			public const int abc_action_mode_done = 2131165211;
+			public const int abc_action_menu_overflow_description = 2131165211;
 			
 			// aapt resource value: 0x7f07001c
-			public const int abc_activity_chooser_view_see_all = 2131165212;
+			public const int abc_action_mode_done = 2131165212;
 			
 			// aapt resource value: 0x7f07001d
-			public const int abc_activitychooserview_choose_application = 2131165213;
+			public const int abc_activity_chooser_view_see_all = 2131165213;
 			
 			// aapt resource value: 0x7f07001e
-			public const int abc_capital_off = 2131165214;
+			public const int abc_activitychooserview_choose_application = 2131165214;
 			
 			// aapt resource value: 0x7f07001f
-			public const int abc_capital_on = 2131165215;
-			
-			// aapt resource value: 0x7f07002a
-			public const int abc_font_family_body_1_material = 2131165226;
-			
-			// aapt resource value: 0x7f07002b
-			public const int abc_font_family_body_2_material = 2131165227;
-			
-			// aapt resource value: 0x7f07002c
-			public const int abc_font_family_button_material = 2131165228;
-			
-			// aapt resource value: 0x7f07002d
-			public const int abc_font_family_caption_material = 2131165229;
-			
-			// aapt resource value: 0x7f07002e
-			public const int abc_font_family_display_1_material = 2131165230;
-			
-			// aapt resource value: 0x7f07002f
-			public const int abc_font_family_display_2_material = 2131165231;
-			
-			// aapt resource value: 0x7f070030
-			public const int abc_font_family_display_3_material = 2131165232;
-			
-			// aapt resource value: 0x7f070031
-			public const int abc_font_family_display_4_material = 2131165233;
-			
-			// aapt resource value: 0x7f070032
-			public const int abc_font_family_headline_material = 2131165234;
-			
-			// aapt resource value: 0x7f070033
-			public const int abc_font_family_menu_material = 2131165235;
-			
-			// aapt resource value: 0x7f070034
-			public const int abc_font_family_subhead_material = 2131165236;
-			
-			// aapt resource value: 0x7f070035
-			public const int abc_font_family_title_material = 2131165237;
+			public const int abc_capital_off = 2131165215;
 			
 			// aapt resource value: 0x7f070020
-			public const int abc_search_hint = 2131165216;
+			public const int abc_capital_on = 2131165216;
 			
-			// aapt resource value: 0x7f070021
-			public const int abc_searchview_description_clear = 2131165217;
+			// aapt resource value: 0x7f07002b
+			public const int abc_font_family_body_1_material = 2131165227;
 			
-			// aapt resource value: 0x7f070022
-			public const int abc_searchview_description_query = 2131165218;
+			// aapt resource value: 0x7f07002c
+			public const int abc_font_family_body_2_material = 2131165228;
 			
-			// aapt resource value: 0x7f070023
-			public const int abc_searchview_description_search = 2131165219;
+			// aapt resource value: 0x7f07002d
+			public const int abc_font_family_button_material = 2131165229;
 			
-			// aapt resource value: 0x7f070024
-			public const int abc_searchview_description_submit = 2131165220;
+			// aapt resource value: 0x7f07002e
+			public const int abc_font_family_caption_material = 2131165230;
 			
-			// aapt resource value: 0x7f070025
-			public const int abc_searchview_description_voice = 2131165221;
+			// aapt resource value: 0x7f07002f
+			public const int abc_font_family_display_1_material = 2131165231;
 			
-			// aapt resource value: 0x7f070026
-			public const int abc_shareactionprovider_share_with = 2131165222;
+			// aapt resource value: 0x7f070030
+			public const int abc_font_family_display_2_material = 2131165232;
 			
-			// aapt resource value: 0x7f070027
-			public const int abc_shareactionprovider_share_with_application = 2131165223;
+			// aapt resource value: 0x7f070031
+			public const int abc_font_family_display_3_material = 2131165233;
 			
-			// aapt resource value: 0x7f070028
-			public const int abc_toolbar_collapse_description = 2131165224;
+			// aapt resource value: 0x7f070032
+			public const int abc_font_family_display_4_material = 2131165234;
 			
-			// aapt resource value: 0x7f070040
-			public const int action_settings = 2131165248;
+			// aapt resource value: 0x7f070033
+			public const int abc_font_family_headline_material = 2131165235;
 			
-			// aapt resource value: 0x7f07003f
-			public const int app_name = 2131165247;
+			// aapt resource value: 0x7f070034
+			public const int abc_font_family_menu_material = 2131165236;
+			
+			// aapt resource value: 0x7f070035
+			public const int abc_font_family_subhead_material = 2131165237;
 			
 			// aapt resource value: 0x7f070036
-			public const int appbar_scrolling_view_behavior = 2131165238;
+			public const int abc_font_family_title_material = 2131165238;
+			
+			// aapt resource value: 0x7f070021
+			public const int abc_search_hint = 2131165217;
+			
+			// aapt resource value: 0x7f070022
+			public const int abc_searchview_description_clear = 2131165218;
+			
+			// aapt resource value: 0x7f070023
+			public const int abc_searchview_description_query = 2131165219;
+			
+			// aapt resource value: 0x7f070024
+			public const int abc_searchview_description_search = 2131165220;
+			
+			// aapt resource value: 0x7f070025
+			public const int abc_searchview_description_submit = 2131165221;
+			
+			// aapt resource value: 0x7f070026
+			public const int abc_searchview_description_voice = 2131165222;
+			
+			// aapt resource value: 0x7f070027
+			public const int abc_shareactionprovider_share_with = 2131165223;
+			
+			// aapt resource value: 0x7f070028
+			public const int abc_shareactionprovider_share_with_application = 2131165224;
+			
+			// aapt resource value: 0x7f070029
+			public const int abc_toolbar_collapse_description = 2131165225;
+			
+			// aapt resource value: 0x7f070041
+			public const int action_settings = 2131165249;
+			
+			// aapt resource value: 0x7f070040
+			public const int app_name = 2131165248;
 			
 			// aapt resource value: 0x7f070037
-			public const int bottom_sheet_behavior = 2131165239;
+			public const int appbar_scrolling_view_behavior = 2131165239;
 			
 			// aapt resource value: 0x7f070038
-			public const int character_counter_pattern = 2131165240;
+			public const int bottom_sheet_behavior = 2131165240;
+			
+			// aapt resource value: 0x7f070039
+			public const int character_counter_pattern = 2131165241;
 			
 			// aapt resource value: 0x7f070008
 			public const int common_google_play_services_enable_button = 2131165192;
@@ -3736,11 +3736,14 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f070002
 			public const int default_web_client_id = 2131165186;
 			
-			// aapt resource value: 0x7f070042
-			public const int drawer_close = 2131165250;
+			// aapt resource value: 0x7f070043
+			public const int drawer_close = 2131165251;
 			
-			// aapt resource value: 0x7f070041
-			public const int drawer_open = 2131165249;
+			// aapt resource value: 0x7f070042
+			public const int drawer_open = 2131165250;
+			
+			// aapt resource value: 0x7f070018
+			public const int fcm_fallback_notification_channel_label = 2131165208;
 			
 			// aapt resource value: 0x7f070003
 			public const int firebase_database_url = 2131165187;
@@ -3754,44 +3757,44 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7f070001
 			public const int google_app_id = 2131165185;
 			
-			// aapt resource value: 0x7f070044
-			public const int google_application_id = 2131165252;
+			// aapt resource value: 0x7f070045
+			public const int google_application_id = 2131165253;
 			
 			// aapt resource value: 0x7f070005
 			public const int google_crash_reporting_api_key = 2131165189;
 			
-			// aapt resource value: 0x7f070045
-			public const int google_firebase_url = 2131165253;
-			
 			// aapt resource value: 0x7f070046
-			public const int google_project_id = 2131165254;
+			public const int google_firebase_url = 2131165254;
 			
-			// aapt resource value: 0x7f070043
-			public const int google_project_number = 2131165251;
+			// aapt resource value: 0x7f070047
+			public const int google_project_id = 2131165255;
+			
+			// aapt resource value: 0x7f070044
+			public const int google_project_number = 2131165252;
 			
 			// aapt resource value: 0x7f070006
 			public const int google_storage_bucket = 2131165190;
 			
-			// aapt resource value: 0x7f070039
-			public const int password_toggle_content_description = 2131165241;
-			
 			// aapt resource value: 0x7f07003a
-			public const int path_password_eye = 2131165242;
+			public const int password_toggle_content_description = 2131165242;
 			
 			// aapt resource value: 0x7f07003b
-			public const int path_password_eye_mask_strike_through = 2131165243;
+			public const int path_password_eye = 2131165243;
 			
 			// aapt resource value: 0x7f07003c
-			public const int path_password_eye_mask_visible = 2131165244;
+			public const int path_password_eye_mask_strike_through = 2131165244;
 			
 			// aapt resource value: 0x7f07003d
-			public const int path_password_strike_through = 2131165245;
-			
-			// aapt resource value: 0x7f070029
-			public const int search_menu_title = 2131165225;
+			public const int path_password_eye_mask_visible = 2131165245;
 			
 			// aapt resource value: 0x7f07003e
-			public const int status_bar_notification_info_overflow = 2131165246;
+			public const int path_password_strike_through = 2131165246;
+			
+			// aapt resource value: 0x7f07002a
+			public const int search_menu_title = 2131165226;
+			
+			// aapt resource value: 0x7f07003f
+			public const int status_bar_notification_info_overflow = 2131165247;
 			
 			static String()
 			{

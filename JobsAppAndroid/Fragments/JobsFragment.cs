@@ -18,10 +18,11 @@ using Firebase.Firestore;
 using Java.Lang;
 using Java.Util;
 using JobsAppAndroid.Models;
+using IEventListener = Firebase.Firestore.IEventListener;
 
 namespace JobsAppAndroid.Fragments
 {
-    public class JobsFragment : Android.Support.V4.App.Fragment, IOnSuccessListener, IOnFailureListener
+    public class JobsFragment : Android.Support.V4.App.Fragment, IOnSuccessListener, IOnFailureListener, IEventListener
     {
         private RecyclerView recyclerView;
         private JobsAdapter jobsAdapter;
@@ -95,8 +96,9 @@ namespace JobsAppAndroid.Fragments
             try
             {
                 CollectionReference collection = db.Collection("jobs");
-
-                collection.Get().AddOnSuccessListener(this).AddOnFailureListener(this);
+                collection.AddSnapshotListener(this);
+               // collection.Get().AddOnSuccessListener(this).AddOnFailureListener(this);
+                //collection.AddSnapshotListener(this);
             }
             catch (System.Exception ex)
             {
@@ -191,6 +193,59 @@ namespace JobsAppAndroid.Fragments
             }
 
             return newObject;
+        }
+
+        public void OnEvent(Java.Lang.Object value, FirebaseFirestoreException error)
+        {
+            if (error != null)
+            {
+                //Log.w("TAG", "listen:error", error);
+                return;
+            }
+
+            int count = jobs.Count();
+            var snapshots = (QuerySnapshot)value;
+            foreach (DocumentChange dc in snapshots.DocumentChanges)
+            {
+                var dictionary = dc.Document.Data;
+                dictionary.Add("Id", dc.Document.Id);
+                var job = ToObject(dictionary);
+
+                
+
+                switch (dc.GetType().ToString())
+                {
+                    case "ADDED":
+                        //Log.d("TAG", "New Msg: " + dc.getDocument().toObject(Message.class));
+                        jobs.Add(job);
+
+                        
+                        break;
+                    
+                    case "MODIFIED": 
+                        //find modified item and replace with new document
+                        int index = jobs.FindIndex(x => x.Id == job.Id);
+                        jobs.RemoveAt(index);
+                        jobs.Insert(index, job);
+                        break;
+                    case "REMOVED":
+                        //jobs.Remove(job);
+                        break;
+                    }
+            }
+            if (count == 0)
+            {
+                spinner.Visibility = ViewStates.Gone;
+                jobsAdapter.NotifyDataSetChanged(); //for updating adapter
+            }
+            else
+            {
+                //make toast
+                Toast toast = Toast.MakeText(Context, "new jobs added", ToastLength.Long);
+                toast.SetGravity(GravityFlags.Center, 0, 0);
+                toast.Show();
+            }
+
         }
     }
 }
