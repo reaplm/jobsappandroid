@@ -11,6 +11,30 @@
   <string name="google_firebase_url">https://jobsapp-c8100.firebaseio.com</string>
   <string name="google_project_id">jobsapp-c8100</string>
   <string name="google_api_key">AIzaSyDfzdlTvtuFMzlA0sq3W5kZyP3_iA37gkY</string>
+
+  <string name="freq_prompt">Alert Frequency</string>
+  <string name="location_prompt">Location</string>
+  <string name="industry_prompt">Industry</string>
+  
+  <string-array name="industry_array">
+    <item>Information Technology</item>
+    <item>Finance</item>
+    <item>Education</item>
+    <item>Law</item>
+  </string-array>
+  
+  <string-array name="location_array">
+    <item>Gaborone</item>
+    <item>Maun</item>
+    <item>Francistown</item>
+    <item>Kanye</item>
+  </string-array>
+  
+  <string-array name="frequency_array">
+    <item>Daily</item>
+    <item>Weekly</item>
+    <item>Monthly</item>
+  </string-array>
   
   
 </resources>

@@ -36,7 +36,7 @@ namespace JobsAppAndroid
 
         //TabLayout Fragments
         private AdapterFragment homeFragment;
-        private AdapterFragment alertsFragment;
+        private AlertsFragment alertsFragment;
         private JobsFragment jobsFragment;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -122,7 +122,7 @@ namespace JobsAppAndroid
 
             //Create fragments for each tab
             homeFragment = new AdapterFragment();
-            alertsFragment = new AdapterFragment();
+            alertsFragment = new AlertsFragment();
             jobsFragment = new JobsFragment();
 
             adapter.AddFragment(homeFragment, "Home");
