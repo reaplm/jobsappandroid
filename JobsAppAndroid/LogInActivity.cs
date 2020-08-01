@@ -14,12 +14,17 @@ namespace JobsAppAndroid
     {
         private EditText email;
         private EditText password;
+        private TextView registerLink;
         private Button loginButton;
         private CheckBox rememberMeCheck;
 
         private FirebaseAuth firebaseAuth;
         private FirebaseApp app;
 
+        private const int REG_REQUEST_ID = 1001;
+
+        static Result RESULT_OK = Result.Ok;
+        static Result RESULT_CANCELED = Result.Canceled;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -29,12 +34,31 @@ namespace JobsAppAndroid
 
             email = FindViewById<EditText>(Resource.Id.email);
             password = FindViewById<EditText>(Resource.Id.password);
+            registerLink = FindViewById<TextView>(Resource.Id.register_link);
             loginButton = FindViewById<Button>(Resource.Id.login_button);
             rememberMeCheck = FindViewById<CheckBox>(Resource.Id.login_rememberme);
 
+            registerLink.Click += RegisterLink_Click;
             loginButton.Click += LoginButton_Click;
 
+            //Initiaize Firebase Authentication Service
+            app = FirebaseApp.Instance;
+            firebaseAuth = FirebaseAuth.GetInstance(app);
+
         }
+        /// <summary>
+        /// Start registration activity     
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RegisterLink_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(RegisterActivity));
+
+            StartActivityForResult(intent, REG_REQUEST_ID);
+        }
+
+
         /// <summary>
         /// Login Button Click Event
         /// Authenticates user using firebase authentication service
@@ -48,9 +72,7 @@ namespace JobsAppAndroid
                 try
                 {
 
-                    //Initiaize Firebase Authentication Service
-                    app = FirebaseApp.GetInstance(GetString(Resource.String.app_name));
-                    firebaseAuth = FirebaseAuth.GetInstance(app);
+                   
 
                     // Attempt Login 
                     await firebaseAuth.SignInWithEmailAndPasswordAsync(email.Text, password.Text);
@@ -82,7 +104,39 @@ namespace JobsAppAndroid
                 //Close Activity 
                     Finish();
                 }
-        } 
+        }
+        /// <summary>
+        /// Intent result callback
+        /// </summary>
+        /// <param name="requestCode"></param>
+        /// <param name="resultCode"></param>
+        /// <param name="data"></param>
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
 
+            //RegistrationActivity
+            if (requestCode == REG_REQUEST_ID)
+            {
+                if (resultCode == RESULT_OK)
+                {
+                    bool isLoggedIn = data.GetBooleanExtra("isLoggedIn", false);
+
+                    if (isLoggedIn)
+                    {
+                        Toast.MakeText(this, data.GetStringExtra("message"), ToastLength.Long).Show();
+
+                    }
+                    else
+                    {
+                        Toast.MakeText(this, data.GetStringExtra("message"), ToastLength.Long).Show();
+                    }
+                }
+                else if (resultCode == RESULT_CANCELED)
+                {
+                    ;
+                }
+            }
+        }
     }
 }

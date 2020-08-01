@@ -63,6 +63,12 @@
 			android:text="Remember Me" 
 		android:textColor="@color/white"/>
 	</LinearLayout>
-	
+	<TextView
+		android:id="@+id/register_link"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="@string/register_link" 
+		android:textColor="@color/white"/>
 
 </LinearLayout>

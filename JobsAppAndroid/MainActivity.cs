@@ -17,7 +17,6 @@ using Android.Gms.Common;
 using Android.Content;
 using Firebase.Auth;
 using Firebase;
-using Firebase.Firestore;
 
 namespace JobsAppAndroid
 {
@@ -70,14 +69,7 @@ namespace JobsAppAndroid
 
                 //[START Initialize Firebase]
 
-                var options = new Firebase.FirebaseOptions.Builder()
-                .SetApplicationId(GetString(Resource.String.google_application_id))
-                .SetApiKey(GetString(Resource.String.google_api_key))
-                .SetDatabaseUrl(GetString(Resource.String.google_firebase_url))
-                .SetProjectId(GetString(Resource.String.google_project_id))
-                .Build();
-
-                app = FirebaseApp.InitializeApp(this, options, GetString(Resource.String.app_name));
+                app = FirebaseApp.InitializeApp(this);
                 firebaseAuth = FirebaseAuth.GetInstance(app);
 
                 //[END Initialize Firebase]

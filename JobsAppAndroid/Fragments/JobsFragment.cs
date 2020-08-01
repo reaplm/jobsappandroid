@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.Gms.Tasks;
 using Android.OS;
@@ -11,13 +8,10 @@ using Android.Runtime;
 using Android.Support.V4.Content;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Firebase;
 using Firebase.Firestore;
-using Java.Lang;
-using Java.Util;
 using JobsAppAndroid.Models;
 using IEventListener = Firebase.Firestore.IEventListener;
 
@@ -42,7 +36,7 @@ namespace JobsAppAndroid.Fragments
 
             // Create your fragment here
             
-            app = FirebaseApp.GetInstance(GetString(Resource.String.app_name));
+            app = FirebaseApp.Instance;
             db = FirebaseFirestore.GetInstance(app);
         }
 
