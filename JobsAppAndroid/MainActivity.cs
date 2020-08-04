@@ -21,7 +21,7 @@ using Firebase;
 namespace JobsAppAndroid
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
+    public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener,View.IOnClickListener
     {
         private TabLayout tabLayout;
         private DrawerLayout drawerLayout;
@@ -103,6 +103,8 @@ namespace JobsAppAndroid
         {
             NavigationView navigationView = drawerLayout.FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
+            var navHeader = navigationView.GetHeaderView(0);
+            navHeader.SetOnClickListener(this);
         }
         /// <summary>
         /// Setup TabLayout ViewPager
@@ -224,6 +226,30 @@ namespace JobsAppAndroid
             {
                 menuItem.SetTitle("Log In");
                 navHeader.FindViewById<TextView>(Resource.Id.nav_header_text).Text = "";
+            }
+        }
+        /// <summary>
+        /// View OnClick Handler
+        /// </summary>
+        /// <param name="v"></param>
+        public void OnClick(View v)
+        {
+            int id = v.Id;
+
+            switch (id)
+            {
+                case Resource.Id.nav_header:
+                    if(firebaseAuth.CurrentUser != null)
+                    {
+                        Intent intent = new Intent(this, typeof(ProfileActivity));
+                        StartActivity(intent);
+                    }
+                    else
+                    {
+                        Intent intent = new Intent(this, typeof(LogInActivity));
+                        StartActivity(intent);
+                    }
+                    break;
             }
         }
     }

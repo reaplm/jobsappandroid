@@ -31,4 +31,6 @@
   </string-array>
 
 	<string name="register_link"><u>Create Account</u></string>
+	<string name="delete_account"><u>Delete Account</u></string>
+	<string name="reset_password"><u>Reset Password</u></string>
 </resources>
