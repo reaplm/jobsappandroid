@@ -246,8 +246,7 @@ namespace JobsAppAndroid
                     }
                     else
                     {
-                        Intent intent = new Intent(this, typeof(LogInActivity));
-                        StartActivity(intent);
+                        SignIn();
                     }
                     break;
             }
