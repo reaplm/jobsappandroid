@@ -9,6 +9,7 @@ using Android.Content;
 using Android.Gms.Tasks;
 using Android.Media;
 using Android.OS;
+using Android.Provider;
 using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
@@ -36,6 +37,7 @@ namespace JobsAppAndroid
         private FirebaseAuth auth;
         private FirebaseFirestore db;
 
+        const int TAKE_PHOTO_REQ = 100;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -194,6 +196,7 @@ namespace JobsAppAndroid
             {
                 case 0:
                     //Upload from camera
+                    UploadFromCamera();
                     break;
                 case 1:
                     //Upload from gallery
@@ -201,6 +204,23 @@ namespace JobsAppAndroid
                 case 2:
                     dialog.Dismiss();
                     break;
+            }
+        }
+        /// <summary>
+        /// Start camera activity
+        /// </summary>
+        private void UploadFromCamera()
+        {
+            try
+            {
+                Intent intent = new Intent(MediaStore.ActionImageCapture);
+                StartActivityForResult(intent, TAKE_PHOTO_REQ);
+
+            }
+
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("Error opening camera: " + ex);
             }
         }
     }
