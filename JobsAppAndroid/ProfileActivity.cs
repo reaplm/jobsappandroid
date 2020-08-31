@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.Gms.Tasks;
+using Android.Graphics;
 using Android.Media;
 using Android.OS;
 using Android.Provider;
@@ -21,6 +23,7 @@ using JobsAppAndroid.Adapters;
 using JobsAppAndroid.Models;
 using Org.Apache.Http.Authentication;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
+using File = Java.IO.File;
 
 namespace JobsAppAndroid
 {
@@ -221,6 +224,64 @@ namespace JobsAppAndroid
             catch (Exception ex)
             {
                 System.Console.WriteLine("Error opening camera: " + ex);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="requestCode"></param>
+        /// <param name="resultCode"></param>
+        /// <param name="data"></param>
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            //LoginActivity
+            if (requestCode == TAKE_PHOTO_REQ && data != null)
+            {
+                if (resultCode == Result.Ok)
+                {
+
+
+                    try
+                    {
+                        Bitmap srcBitmap = (Bitmap)data.Extras.Get("data");
+
+                        var sdpath = Application.Context.GetExternalFilesDir(null).AbsolutePath;
+
+                        File folder = new File(sdpath + File.Separator + "Profile Images");
+
+                        if (!folder.Exists())
+                        {
+                            folder.Mkdirs();
+                        }
+
+                        File file = new File(folder.AbsolutePath, auth.CurrentUser.Uid + ".jpg");
+
+
+                        var stream = new FileStream(file.AbsolutePath, FileMode.Create);
+                        srcBitmap.Compress(Bitmap.CompressFormat.Png, 80, stream);
+
+                        //Upload to firestore
+                        var reference = db.Collection("users").Document(auth.CurrentUser.Uid);
+                        reference.Update("PhotoUrl", file.AbsolutePath);
+
+                        profileImage.SetImageBitmap(srcBitmap);
+                        stream.Flush();
+                        stream.Close();
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Console.WriteLine("Error uploading profile image: " + ex);
+                    }
+
+                }
+                else if (resultCode == Result.Canceled)
+                {
+                    ;
+                }
             }
         }
     }
