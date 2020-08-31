@@ -29,6 +29,12 @@
     <item>Weekly</item>
     <item>Monthly</item>
   </string-array>
+  
+  <string-array name="upload_photo">
+    <item>Take Photo</item>
+    <item>Choose From Gallery</item>
+    <item>Cancel</item>
+  </string-array>
 
 	<string name="register_link"><u>Create Account</u></string>
 	<string name="delete_account"><u>Delete Account</u></string>

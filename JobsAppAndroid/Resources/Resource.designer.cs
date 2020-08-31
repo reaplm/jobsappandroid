@@ -143,6 +143,9 @@ namespace JobsAppAndroid
 			// aapt resource value: 0x7F030002
 			public const int location_array = 2130903042;
 			
+			// aapt resource value: 0x7F030003
+			public const int upload_photo = 2130903043;
+			
 			static Array()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

@@ -24,15 +24,11 @@ using AlertDialog = Android.Support.V7.App.AlertDialog;
 namespace JobsAppAndroid
 {
     [Activity(Label = "Account")]
-    public class ProfileActivity : AppCompatActivity, IOnSuccessListener
+    public class ProfileActivity : AppCompatActivity, IOnSuccessListener, IDialogInterfaceOnClickListener
     {
         private TextView name;
-        private TextView email;
         private TextView phone;
-        private TextView resetPassword;
-        private TextView deleteAccount;
-        private ImageButton editName;
-        private ImageButton editPhone;
+        private ImageView profileImage;
 
         private ListView listView;
 
@@ -67,11 +63,25 @@ namespace JobsAppAndroid
             listView.Adapter = new ListAdapter(this, listData);
             listView.AddFooterView(new View(this));
 
-            
+            profileImage = FindViewById<ImageView>(Resource.Id.profile_pic);
+            profileImage.Click += ProfileImage_Click;
 
 
 
         }
+
+        private void ProfileImage_Click(object sender, EventArgs e)
+        {
+            //Open Dialog
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+
+            alertBuilder.SetTitle("Add Photo");
+            alertBuilder.SetItems(Resource.Array.upload_photo, this);
+
+            AlertDialog alertDialog = alertBuilder.Create();
+            alertDialog.Show();
+        }
+
         /// <summary>
         /// Change Password
         /// </summary>
@@ -176,6 +186,22 @@ namespace JobsAppAndroid
         public void OnSuccess(Java.Lang.Object result)
         {
             throw new NotImplementedException();
+        }
+
+        public void OnClick(IDialogInterface dialog, int which)
+        {
+            switch (which)
+            {
+                case 0:
+                    //Upload from camera
+                    break;
+                case 1:
+                    //Upload from gallery
+                    break;
+                case 2:
+                    dialog.Dismiss();
+                    break;
+            }
         }
     }
 }
