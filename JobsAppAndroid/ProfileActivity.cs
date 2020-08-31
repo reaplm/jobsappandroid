@@ -28,7 +28,7 @@ using File = Java.IO.File;
 namespace JobsAppAndroid
 {
     [Activity(Label = "Account")]
-    public class ProfileActivity : AppCompatActivity, IOnSuccessListener, IDialogInterfaceOnClickListener
+    public class ProfileActivity : AppCompatActivity, IOnSuccessListener, IOnFailureListener, IDialogInterfaceOnClickListener
     {
         private TextView name;
         private TextView phone;
@@ -171,7 +171,7 @@ namespace JobsAppAndroid
                         }
                         else { Toast.MakeText(this, "Something went wrong. Sorry.", ToastLength.Long).Show(); }
                     }
-                    catch (Exception ex)
+                    catch (System.Exception ex)
                     {
                         Toast.MakeText(this, "Failed to update. Sorry.", ToastLength.Long).Show();
                     }
@@ -187,12 +187,28 @@ namespace JobsAppAndroid
             AlertDialog alertDialog = alertBuilder.Create();
             alertDialog.Show();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="result"></param>
         public void OnSuccess(Java.Lang.Object result)
         {
-            throw new NotImplementedException();
+            Toast.MakeText(this, "Profile changed successfully!", ToastLength.Long).Show();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        public void OnFailure(Java.Lang.Exception e)
+        {
+            Console.WriteLine("Failed to update profile image for user - " + auth.CurrentUser.Uid + " - " + e.InnerException.Message);
+            Toast.MakeText(this, "Failed to update profile image", ToastLength.Long).Show();
+        }
+        /// <summary>
+        /// Change profile image dialog onClick event handler
+        /// </summary>
+        /// <param name="dialog"></param>
+        /// <param name="which"></param>
         public void OnClick(IDialogInterface dialog, int which)
         {
             switch (which)
@@ -221,7 +237,7 @@ namespace JobsAppAndroid
 
             }
 
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 System.Console.WriteLine("Error opening camera: " + ex);
             }
@@ -264,7 +280,9 @@ namespace JobsAppAndroid
 
                         //Upload to firestore
                         var reference = db.Collection("users").Document(auth.CurrentUser.Uid);
-                        reference.Update("PhotoUrl", file.AbsolutePath);
+                        reference.Update("PhotoUrl", file.AbsolutePath)
+                            .AddOnSuccessListener(this)
+                            .AddOnFailureListener(this);
 
                         profileImage.SetImageBitmap(srcBitmap);
                         stream.Flush();
@@ -272,7 +290,7 @@ namespace JobsAppAndroid
 
 
                     }
-                    catch (Exception ex)
+                    catch (System.Exception ex)
                     {
                         System.Console.WriteLine("Error uploading profile image: " + ex);
                     }
@@ -284,5 +302,7 @@ namespace JobsAppAndroid
                 }
             }
         }
+
+       
     }
 }
