@@ -41,6 +41,7 @@ namespace JobsAppAndroid
         private FirebaseFirestore db;
 
         const int TAKE_PHOTO_REQ = 100;
+        const int GALLERY_PHOTO_REQ = 200;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -219,12 +220,24 @@ namespace JobsAppAndroid
                     break;
                 case 1:
                     //Upload from gallery
+                    UploadFromGallery();
                     break;
                 case 2:
                     dialog.Dismiss();
                     break;
             }
         }
+        /// <summary>
+        /// Upload profile image from gallery
+        /// </summary>
+        private void UploadFromGallery()
+        {
+            Intent intent = new Intent(Intent.ActionPick, MediaStore.Images.Media.ExternalContentUri);
+            intent.SetType("image/*");
+            intent.SetAction(Intent.ActionGetContent);
+            StartActivityForResult(intent, GALLERY_PHOTO_REQ);
+        }
+
         /// <summary>
         /// Start camera activity
         /// </summary>
@@ -243,7 +256,7 @@ namespace JobsAppAndroid
             }
         }
         /// <summary>
-        /// 
+        /// Callback for camera result and gallery picker
         /// </summary>
         /// <param name="requestCode"></param>
         /// <param name="resultCode"></param>
@@ -252,12 +265,11 @@ namespace JobsAppAndroid
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            //LoginActivity
-            if (requestCode == TAKE_PHOTO_REQ && data != null)
+            if (resultCode == Result.Ok)
             {
-                if (resultCode == Result.Ok)
+                //Capture from camera
+                if (requestCode == TAKE_PHOTO_REQ && data != null)
                 {
-
 
                     try
                     {
@@ -294,11 +306,47 @@ namespace JobsAppAndroid
                     {
                         System.Console.WriteLine("Error uploading profile image: " + ex);
                     }
-
                 }
-                else if (resultCode == Result.Canceled)
+                //Select from gallery
+                if (requestCode == GALLERY_PHOTO_REQ && data != null)
                 {
-                    ;
+
+                    try
+                    {
+                        var imageUri = data.Data;
+                        Bitmap srcImage = MediaStore.Images.Media.GetBitmap(this.ContentResolver, imageUri);
+
+                        var sdpath = Application.Context.GetExternalFilesDir(null).AbsolutePath;
+
+                        File folder = new File(sdpath + File.Separator + "Profile Images");
+
+                        if (!folder.Exists())
+                        {
+                            folder.Mkdirs();
+                        }
+
+                        File file = new File(folder.AbsolutePath, auth.CurrentUser.Uid + ".jpg");
+
+
+                        var stream = new FileStream(file.AbsolutePath, FileMode.Create);
+                        srcImage.Compress(Bitmap.CompressFormat.Png, 100, stream);
+
+                        //Upload to firestore
+                        var reference = db.Collection("users").Document(auth.CurrentUser.Uid);
+                        reference.Update("PhotoUrl", file.AbsolutePath)
+                            .AddOnSuccessListener(this)
+                            .AddOnFailureListener(this);
+
+                        profileImage.SetImageBitmap(srcImage);
+                        stream.Flush();
+                        stream.Close();
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error choosing from gallery for user - " + auth.CurrentUser.Uid + " - :" + ex);
+                    }
                 }
             }
         }
