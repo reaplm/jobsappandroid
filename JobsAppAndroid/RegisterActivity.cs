@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,14 @@ using Android.Views;
 using Android.Widget;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Firestore;
+using Java.Util;
 using JobsAppAndroid.Models;
 
 namespace JobsAppAndroid
 {
     [Activity(Label = "RegisterActivity")]
-    public class RegisterActivity : AppCompatActivity, IOnCompleteListener
+    public class RegisterActivity : AppCompatActivity, IOnCompleteListener, IOnSuccessListener, IOnFailureListener
     {
         private EditText fName;
         private EditText lName;
@@ -30,7 +33,7 @@ namespace JobsAppAndroid
 
         private FirebaseApp app;
         private FirebaseAuth auth;
-        //private FirebaseFirestore firestore;
+        private FirebaseFirestore db;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -46,7 +49,6 @@ namespace JobsAppAndroid
             phone = FindViewById<EditText>(Resource.Id.register_phone);
             email = FindViewById<EditText>(Resource.Id.register_email);
             password = FindViewById<EditText>(Resource.Id.register_password);
-            phone = FindViewById<EditText>(Resource.Id.register_phone);
             registerButton = FindViewById<Button>(Resource.Id.register_button);
             rememberMeCheck = FindViewById<CheckBox>(Resource.Id.register_rememberme);
 
@@ -55,6 +57,7 @@ namespace JobsAppAndroid
             //Initiaize Firebase Authentication Service
             app = FirebaseApp.Instance;
             auth = FirebaseAuth.GetInstance(app);
+            db = FirebaseFirestore.GetInstance(app);
         }
         /// <summary>
         /// Firebase Registration
@@ -74,7 +77,20 @@ namespace JobsAppAndroid
 
                 if (auth.CurrentUser != null)//Success
                 {
-                    
+                    //Create entry in the database
+                    var dictionary = new Dictionary<string, Java.Lang.Object>();
+                    dictionary.Add("FName", fName.Text);
+                    dictionary.Add("LName", lName.Text);
+                    dictionary.Add("Phone", phone.Text);
+                    dictionary.Add("Email", auth.CurrentUser.Email);
+                    dictionary.Add("Uid", auth.CurrentUser.Uid);
+                    dictionary.Add("Created", new Java.Util.Date());
+
+                    var reference = db.Collection("users");
+                    reference.Document(auth.CurrentUser.Uid).Set(dictionary)
+                        .AddOnSuccessListener(this)
+                        .AddOnFailureListener(this);
+
                     result.PutExtra("isLoggedIn", true);
                     result.PutExtra("message", "Registration Successful!");
                     SetResult(Result.Ok, result);
@@ -89,7 +105,7 @@ namespace JobsAppAndroid
                 }
 
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 result.PutExtra("isLoggedIn", false);
                 result.PutExtra("message", ex.Message);
@@ -116,6 +132,22 @@ namespace JobsAppAndroid
             {
 
             }
+        }
+        /// <summary>
+        /// Firebase database OnSuccess listener
+        /// </summary>
+        /// <param name="result"></param>
+        public void OnSuccess(Java.Lang.Object result)
+        {
+            Console.WriteLine("Successfully created db entry for user - " + email.Text);
+        }
+        /// <summary>
+        /// Firebase database OnFailure listener
+        /// </summary>
+        /// <param name="e"></param>
+        public void OnFailure(Java.Lang.Exception e)
+        {
+            Console.WriteLine("Failed to create db entry for user - " + email.Text + " - (" + e + ")");
         }
     }
 }
