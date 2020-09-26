@@ -17,6 +17,8 @@ using Android.Gms.Common;
 using Android.Content;
 using Firebase.Auth;
 using Firebase;
+using Square.Picasso;
+using File = Java.IO.File;
 
 namespace JobsAppAndroid
 {
@@ -53,6 +55,7 @@ namespace JobsAppAndroid
                 var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_close);
                 drawerLayout.AddDrawerListener(drawerToggle);
                 drawerToggle.SyncState();
+                drawerLayout.DrawerOpened += OnDrawerOpened;
 
                 //Setup Navigation View
                 SetNavigationViewListener();
@@ -82,7 +85,46 @@ namespace JobsAppAndroid
                 Console.WriteLine("Error Msg: " + ex);
             }
         }
+        /// <summary>
+        /// Do this when drawer is opened
+        /// </summary>
+        /// <param name="sender">drawerLayout</param>
+        /// <param name="e"></param>
+        private void OnDrawerOpened(object sender, DrawerLayout.DrawerOpenedEventArgs e)
+        {
+            NavigationView navigationView = ((DrawerLayout)sender).FindViewById<NavigationView>(Resource.Id.nav_view);
+            View navHeader = navigationView.GetHeaderView(0);
 
+            //Get location of profile image
+            var sdpath = Application.Context.GetExternalFilesDir(null).AbsolutePath;
+            var imageFolder = new File(sdpath + File.Separator + "Profile Images");
+
+            if (imageFolder.Exists())
+            {
+                if (firebaseAuth.CurrentUser != null)
+                {
+
+                    File image = new File(imageFolder.AbsolutePath, firebaseAuth.CurrentUser.Uid + ".jpg");
+
+                    //Load profile image into holder
+                    Picasso.Get().LoggingEnabled = true;
+                    Picasso.Get().Load(image)
+                        .Placeholder(Resource.Drawable.profile_image)
+                        .Error(Resource.Drawable.profile_image)
+                        .Into(navHeader.FindViewById<ImageView>(Resource.Id.nav_header_image));
+                }
+            }
+            else
+            {
+                //Load default image
+                Picasso.Get().LoggingEnabled = true;
+                Picasso.Get().Load(Resource.Drawable.profile_image)
+                    .Placeholder(Resource.Drawable.user_icon)
+                    .Error(Resource.Drawable.profile_image)
+                    .Into(navHeader.FindViewById<ImageView>(Resource.Id.nav_header_image));
+            }
+
+        }
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.menu_main, menu);
@@ -250,6 +292,12 @@ namespace JobsAppAndroid
                     }
                     break;
             }
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+            //Keep drawer closed
+            drawerLayout.CloseDrawer(GravityCompat.Start);
         }
     }
 }
