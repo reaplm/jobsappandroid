@@ -146,6 +146,10 @@ namespace JobsAppAndroid
                     if (firebaseAuth.CurrentUser == null) { SignIn(); }
                     else SignOut();
                     break;
+                case Resource.Id.action_favourites:
+                    Intent intent = new Intent(this, typeof(FavouritesActivity));
+                    StartActivity(intent);
+                    break;
             }
             drawerLayout.CloseDrawer(GravityCompat.Start, true);
             return true;

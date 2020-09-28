@@ -60,7 +60,9 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\LikesAdapter.cs" />
     <Compile Include="Adapters\ListAdapter.cs" />
+    <Compile Include="FavouritesActivity.cs" />
     <Compile Include="Fragments\AdapterFragment.cs" />
     <Compile Include="Fragments\AlertsFragment.cs" />
     <Compile Include="Fragments\JobsFragment.cs" />
@@ -495,6 +497,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\profile_list_item.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_favourites.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
