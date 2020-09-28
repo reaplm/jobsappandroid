@@ -22,6 +22,7 @@ using Firebase.Firestore;
 using JobsAppAndroid.Adapters;
 using JobsAppAndroid.Models;
 using Org.Apache.Http.Authentication;
+using Square.Picasso;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
 using File = Java.IO.File;
 
@@ -43,6 +44,8 @@ namespace JobsAppAndroid
         const int TAKE_PHOTO_REQ = 100;
         const int GALLERY_PHOTO_REQ = 200;
 
+        private File imageFolder = null;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -56,6 +59,16 @@ namespace JobsAppAndroid
             auth = FirebaseAuth.GetInstance(app);
             db = FirebaseFirestore.GetInstance(app);
 
+            //Profile image location
+            var sdpath = Application.Context.GetExternalFilesDir(null).AbsolutePath;
+            imageFolder = new File(sdpath + File.Separator + "Profile Images");
+
+            if (!imageFolder.Exists())
+            {
+                imageFolder.Mkdirs();
+            }
+
+            File image = new File(imageFolder.AbsolutePath, auth.CurrentUser.Uid + ".jpg");
 
             //ListView
             listView = FindViewById<ListView>(Resource.Id.profile_listview);
@@ -71,6 +84,14 @@ namespace JobsAppAndroid
 
             profileImage = FindViewById<ImageView>(Resource.Id.profile_pic);
             profileImage.Click += ProfileImage_Click;
+
+            //Load profile image
+            Picasso.Get().Load(image)
+                .Placeholder(Resource.Drawable.profile_image)
+                .Error(Resource.Drawable.profile_image)
+                .Into(FindViewById<ImageView>(Resource.Id.profile_pic));
+
+            
 
 
 
