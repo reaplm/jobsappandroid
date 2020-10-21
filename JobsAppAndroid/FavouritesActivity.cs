@@ -6,6 +6,7 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Support.V4.Content;
 using Android.Support.V4.Widget;
@@ -18,6 +19,8 @@ using Firebase.Auth;
 using Firebase.Firestore;
 using JobsAppAndroid.Adapters;
 using JobsAppAndroid.Models;
+using JobsAppAndroid.Services;
+using Newtonsoft.Json;
 
 namespace JobsAppAndroid
 {
@@ -32,9 +35,11 @@ namespace JobsAppAndroid
         private FirebaseFirestore db;
         private FirebaseAuth auth;
 
-        private ProgressBar spinner;
         private SwipeRefreshLayout swipeRefreshLayout;
         private bool reload = false;
+
+        private ISharedPreferences preferences;
+        private AppPreferences appPreferences;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -47,7 +52,7 @@ namespace JobsAppAndroid
             //Setup firebase
             app = FirebaseApp.Instance;
             db = FirebaseFirestore.GetInstance(app);
-            auth = FirebaseAuth.GetInstance(app);
+            auth = FirebaseAuth.GetInstance(app);            
 
             swipeRefreshLayout = (SwipeRefreshLayout)FindViewById(Resource.Id.refreshView);
             swipeRefreshLayout.Refresh += delegate (object sender, System.EventArgs e)
@@ -58,14 +63,14 @@ namespace JobsAppAndroid
 
             swipeRefreshLayout.Post(() =>
             {
-                swipeRefreshLayout.Refreshing = true;
+                swipeRefreshLayout.Refreshing = false;
                 recyclerView.Clickable = false;
             });
 
             reload = true;
-            likes = new List<Job>();
-            FetchCollection();
-            likesAdapter = new LikesAdapter(likes);
+
+            //GetLikesFromPreferences();
+            likesAdapter = new LikesAdapter(this);
             likesAdapter.ItemClick += OnItemClick;
 
             recyclerView = FindViewById<RecyclerView>(Resource.Id.faves_recycler_view);
@@ -80,8 +85,25 @@ namespace JobsAppAndroid
 
         private void OnItemClick(object sender, LikesAdapterClickEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
+        /// <summary>
+        /// Fetch likes from 
+        /// </summary>
+        private void GetLikesFromPreferences()
+        {
+            likes = appPreferences.GetLikes();
+
+            swipeRefreshLayout.Post(() =>
+            {
+                swipeRefreshLayout.Refreshing = false;
+                recyclerView.Clickable = true;
+            });
+
+        }
+        /// <summary>
+        /// Fetch likes from firestore
+        /// </summary>
         private void FetchCollection()
         {
             try
@@ -95,6 +117,11 @@ namespace JobsAppAndroid
                 Console.WriteLine("Error in FindLikes: " + ex.Message);
             }
         }
+        /// <summary>
+        /// Firestore document fetch complete event
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="error"></param>
         public void OnEvent(Java.Lang.Object value, FirebaseFirestoreException error)
         {
             if (error != null)

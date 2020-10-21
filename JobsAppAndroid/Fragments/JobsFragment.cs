@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 using Android.Content;
 using Android.Gms.Tasks;
 using Android.OS;
@@ -13,6 +15,7 @@ using Android.Widget;
 using Firebase;
 using Firebase.Firestore;
 using JobsAppAndroid.Models;
+using Newtonsoft.Json;
 using IEventListener = Firebase.Firestore.IEventListener;
 
 namespace JobsAppAndroid.Fragments
@@ -26,7 +29,6 @@ namespace JobsAppAndroid.Fragments
         private FirebaseApp app;
         private FirebaseFirestore db;
 
-        private ProgressBar spinner;
         private SwipeRefreshLayout swipeRefreshLayout;
         private bool reload = false;
 
@@ -60,7 +62,7 @@ namespace JobsAppAndroid.Fragments
             reload = true;
             jobs = new List<Job>();
             FetchCollection();
-            jobsAdapter = new JobsAdapter(jobs);
+            jobsAdapter = new JobsAdapter(Context, jobs);
             jobsAdapter.ItemClick += OnItemClick;
 
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.jobs_recycler_view);
@@ -78,18 +80,7 @@ namespace JobsAppAndroid.Fragments
             var item = jobs[e.Position];
 
             Intent intent = new Intent(Context, typeof(JobDetailActivity));
-            intent.PutExtra("title", item.Title);
-            intent.PutExtra("company", item.Company);
-            intent.PutExtra("location", item.Location);
-            intent.PutExtra("description", item.Description);
-            intent.PutExtra("type", item.Type);
-            intent.PutStringArrayListExtra("qualifications", item.Qualifications);
-            intent.PutStringArrayListExtra("competencies", item.Competencies);
-            intent.PutStringArrayListExtra("contacts", item.Contacts);
-            intent.PutExtra("closing", "Closes " + item.Closing.ToLongDateString());
-
-            var timeSpan = TimeSpan.FromTicks(item.Posted.Ticks).Days;
-            intent.PutExtra("posted", timeSpan.ToString() + " days ago");
+            intent.PutExtra("job", JsonConvert.SerializeObject(item));
 
             StartActivity(intent);
 
@@ -219,10 +210,10 @@ namespace JobsAppAndroid.Fragments
             foreach (DocumentChange dc in snapshots.DocumentChanges)
             {
                 var dictionary = dc.Document.Data;
-                dictionary.Add("Id", dc.Document.Id);
                 var job = ToObject(dictionary);
+                job.Id = dc.Document.Id;
 
-                
+
 
                 switch (dc.GetType().ToString())
                 {

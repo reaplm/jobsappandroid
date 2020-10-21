@@ -1,14 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace JobsAppAndroid.Models
 {
@@ -24,6 +16,7 @@ namespace JobsAppAndroid.Models
         public string Company { set; get; }
         public DateTime Closing { set; get; }
         public DateTime Posted { set; get; }
+        public bool Liked { set; get; }
         public List<string> Contacts { set; get; }
         public List<string> Competencies { set; get; }
         public List<string> Qualifications { set; get; }

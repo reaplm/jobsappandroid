@@ -8,11 +8,14 @@ using Android.Content;
 using Android.Graphics.Drawables;
 using Android.Graphics.Drawables.Shapes;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using JobsAppAndroid.Models;
+using JobsAppAndroid.Services;
+using Newtonsoft.Json;
 
 namespace JobsAppAndroid.Adapters
 {
@@ -23,12 +26,21 @@ namespace JobsAppAndroid.Adapters
         private List<Job> likes;
         private RandomColorGenerator randomColorGenerator;
 
-        public LikesAdapter(List<Job> data)
+        private Context context;
+        private ISharedPreferences preferences;
+        private AppPreferences appPreferences;
+
+        public LikesAdapter(Context context)
         {
-            likes = data;
+            this.context = context;
 
             //Color Generator
             randomColorGenerator = new RandomColorGenerator();
+
+            preferences = PreferenceManager.GetDefaultSharedPreferences(context);
+            appPreferences = new AppPreferences(preferences);
+
+            likes = appPreferences.GetLikes();
 
         }
 
@@ -50,19 +62,47 @@ namespace JobsAppAndroid.Adapters
             var item = likes[position];
 
             // Replace the contents of the view with that element
-            var holder = viewHolder as JobsAdapterViewHolder;
+            var holder = viewHolder as LikesAdapterViewHolder;
             holder.Title.Text = likes[position].Title;
             holder.Company.Text = likes[position].Company;
             holder.Location.Text = likes[position].Location;
             holder.PostedDate.Text = likes[position].Posted.ToShortDateString();
             holder.ClosingDate.Text = "Closing date: " + likes[position].Closing.ToShortDateString();
             holder.CircularButton.Text = likes[position].Title.Substring(0, 1).ToUpper();
+            holder.FaveCheckbox.Checked = likes[position].Liked;
 
             ShapeDrawable circle = new ShapeDrawable(new OvalShape());
             circle.Paint.Color = randomColorGenerator.GetColor();
             holder.CircularButton.Background = circle;
-        }
 
+            holder.FaveCheckbox.Click += delegate
+            {
+                    //Add to likes
+                    if (!holder.FaveCheckbox.Checked)
+                    {
+
+                        DeleteFromPreferences(item);
+                    }
+
+            };
+
+        }
+        /// <summary>
+        /// Remove item from liked items
+        /// </summary>
+        /// <param name="item">Item to remove</param>
+        private void DeleteFromPreferences(Job item)
+        {
+            //delete from preferences
+            appPreferences.DeleteLike(item);
+
+            if (likes != null)
+            {
+                likes.Remove(item);
+                NotifyDataSetChanged();
+            }
+
+        }
         public override int ItemCount => likes.Count;
 
         void OnClick(LikesAdapterClickEventArgs args) => ItemClick?.Invoke(this, args);
@@ -78,6 +118,7 @@ namespace JobsAppAndroid.Adapters
         public TextView PostedDate { get; set; }
         public TextView ClosingDate { get; set; }
         public Button CircularButton { set; get; }
+        public CheckBox FaveCheckbox { set; get; }
 
         public LikesAdapterViewHolder(View itemView, Action<LikesAdapterClickEventArgs> clickListener,
                             Action<LikesAdapterClickEventArgs> longClickListener) : base(itemView)
@@ -88,6 +129,8 @@ namespace JobsAppAndroid.Adapters
             PostedDate = itemView.FindViewById<TextView>(Resource.Id.list_item_posted_date);
             ClosingDate = itemView.FindViewById<TextView>(Resource.Id.list_item_closing_date);
             CircularButton = itemView.FindViewById<Button>(Resource.Id.list_item_circle_btn);
+            FaveCheckbox = itemView.FindViewById<CheckBox>(Resource.Id.list_item_fav_button);
+            FaveCheckbox.Checked = true;
 
             itemView.Click += (sender, e) => clickListener(new LikesAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new LikesAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
