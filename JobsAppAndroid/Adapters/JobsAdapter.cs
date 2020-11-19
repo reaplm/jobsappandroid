@@ -19,6 +19,7 @@ using Android.Content;
 using Android.Preferences;
 using Newtonsoft.Json;
 using JobsAppAndroid.Services;
+using System.Collections.ObjectModel;
 
 namespace JobsAppAndroid
 {
@@ -26,8 +27,9 @@ namespace JobsAppAndroid
     {
         public event EventHandler<JobsAdapterClickEventArgs> ItemClick;
         public event EventHandler<JobsAdapterClickEventArgs> ItemLongClick;
-        private List<Job> jobs;
+        //private List<Job> jobs;
         private RandomColorGenerator randomColorGenerator;
+        public ObservableCollection<Job> jobs;
 
         private FirebaseApp app;
         private FirebaseFirestore db;
@@ -37,7 +39,7 @@ namespace JobsAppAndroid
         private ISharedPreferences preferences;
         private AppPreferences appPreferences;
 
-        public JobsAdapter(Context context, List<Job> data)
+        public JobsAdapter(Context context, ObservableCollection<Job> data)
         {
             jobs = data;
             this.context = context;

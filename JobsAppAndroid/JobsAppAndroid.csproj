@@ -62,12 +62,14 @@
   <ItemGroup>
     <Compile Include="Adapters\LikesAdapter.cs" />
     <Compile Include="Adapters\ListAdapter.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="FavouritesActivity.cs" />
     <Compile Include="Fragments\AdapterFragment.cs" />
     <Compile Include="Fragments\AlertsFragment.cs" />
     <Compile Include="Fragments\JobsFragment.cs" />
     <Compile Include="JobDetailActivity.cs" />
-    <Compile Include="JobsAdapter.cs" />
+    <Compile Include="Adapters\JobsAdapter.cs" />
+    <Compile Include="ViewModels\JobViewModel.cs" />
     <Compile Include="LogInActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\Job.cs" />
@@ -136,6 +138,18 @@
     <PackageReference Include="Xamarin.Android.Support.v7.CardView">
       <Version>28.0.0.3</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.ExifInterface">
+      <Version>1.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">
+      <Version>1.0.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
+      <Version>2.2.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.RecyclerView">
+      <Version>1.1.0.5</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Auth">
       <Version>71.1605.4</Version>
     </PackageReference>
@@ -150,6 +164,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Firestore">
       <Version>71.1705.4</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Android.Material">
+      <Version>1.1.0.5</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Google.Guava.FailureAccess">
       <Version>1.0.1.2</Version>
